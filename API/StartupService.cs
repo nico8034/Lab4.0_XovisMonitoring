@@ -26,8 +26,10 @@ public class StartupService : IHostedService
 
         try
         {
-            cameras = JsonConvert.DeserializeObject<List<Camera>>(await File.ReadAllTextAsync(filename, cancellationToken));
-            _xovisCameraService.SetupCameras(cameras);
+            // cameras = JsonConvert.DeserializeObject<List<Camera>>(await File.ReadAllTextAsync(filename, cancellationToken));
+            await _xovisCameraService.RegisterCameras();
+            cameras = _xovisCameraService.GetCameras();
+            Console.WriteLine(cameras);
             _monitoringService.SetupRoom();
         }
         catch (Exception ex)

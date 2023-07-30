@@ -4,7 +4,7 @@ public class Camera
 {
     public string Ip { get; set; }
     public string Name { get; set; }
-    public List<Zone> Zones { get; set; }
+    public List<Zone>? Zones { get; set; }
 
     public Camera(string cameraName, string cameraIp, List<Zone> cameraZone)
     {

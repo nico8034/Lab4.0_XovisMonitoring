@@ -8,5 +8,6 @@ public interface ICameraService
     Task<ServiceResponse<List<CameraImageData>>> GetStereoImage();
     Task<ServiceResponse<List<CameraImageData>>> GetValidationImage();
     Task<ServiceResponse<List<PersonCountDTO>>> GetPersonCountInView();
-    void SetupCameras(List<Camera> cameras);
+    List<Camera> GetCameras();
+    Task<ServiceResponse<List<Camera>>> RegisterCameras();
 }

@@ -113,11 +113,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nicol\\RiderProjects\\XovisProject_v2\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\nicol\\RiderProjects\\XovisProject_v2\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nicol\\RiderProjects\\XovisProject_v2\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",

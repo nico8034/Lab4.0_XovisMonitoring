@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XkHDvWQy3Lm8HSQBS5Nh5MM5h4d9U6vEGxmxuPuzZ1Qhj26BK2qLKVIew9TMZpYGEgVqHVPyIhbPnubHAG/PVQ==",
+  "dgSpecHash": "X1eQXppLPRs9p80mj4NM4qcWjSyUBq3eLvL1lOKgosbKJ4zQQ4gEL5FoB1F9iGC5H2Nvk1VSlM109i9+ikDatw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nicol\\RiderProjects\\XovisProject_v2\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nicol\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
     "C:\\Users\\nicol\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.6.0\\fluentvalidation.dependencyinjectionextensions.11.6.0.nupkg.sha512",

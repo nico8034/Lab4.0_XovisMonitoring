@@ -10,11 +10,113 @@ public class XovisCameraService : ICameraService
 {
   private List<Camera>? Cameras { get; set; }
 
-    public void SetupCameras(List<Camera> cameras)
-    {
-      Cameras = cameras;
-    }
 
+  public List<Camera> GetCameras()
+  {
+    return Cameras;
+  }
+  public async Task<ServiceResponse<List<Camera>>> RegisterCameras()
+  {
+    var listOfIps = new List<string>
+    {
+      "http://10.179.0.46",
+      "http://10.179.0.45",
+      "http://10.179.0.34",
+      "http://10.179.0.43",
+      "http://10.179.0.20",
+      "http://10.179.0.12",
+      "http://10.179.0.28",
+      "http://10.179.0.21"
+    };
+    
+    var response = new ServiceResponse<List<Camera>>()
+    {
+      Data = new List<Camera>()
+    };
+
+      // create tasks
+      var tasks = new List<Task<Camera>>();
+
+      Console.WriteLine("Running");
+      try
+      {
+        // Create HttpClient
+        using var httpClient = new HttpClient();
+        // Configure Headers
+        httpClient.DefaultRequestHeaders.Authorization =
+          new System.Net.Http.Headers.AuthenticationHeaderValue(
+            "Basic",
+            Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
+          );
+        // If any cameras registered
+        if (listOfIps != null)
+        {
+          foreach (var cameraIp in listOfIps)
+          {
+            var zones = new List<Zone>();
+            // 
+            async Task<Camera> Func()
+            {
+              // 
+              var httpResponse = await httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
+                HttpCompletionOption.ResponseContentRead);
+            
+              httpResponse.EnsureSuccessStatusCode();
+
+              var responseBody = await httpResponse.Content.ReadAsStringAsync();
+
+              if (responseBody != null)
+              {
+                var res = JsonConvert.DeserializeObject<Root>(responseBody);
+                if ((res.status.code == "OK") && (res.content.element.Count > 0))
+                {
+                  var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
+                  
+                  // For each of the zones present on the camera
+                  foreach (var zone in cameraZones)
+                  {
+                    var zoneName = zone.elementname;
+                    var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
+                    zones.Add(new Zone(cameraIp,zoneName,zonePersonCount.value));
+                  }
+                 
+                }
+              }
+
+              return new Camera( $"Camera_{cameraIp[^2..]}",cameraIp, zones);
+            }
+
+            tasks.Add(Func());
+          }
+
+          await Task.WhenAll(tasks);
+
+          foreach (var t in tasks)
+          {
+            await t;
+            if (t.IsCompletedSuccessfully)
+            {
+              response.Data.Add(t.Result);
+            }
+            else
+            {
+              response.Success = false;
+              response.Message =
+                $"Unable to fetch camera information for {t.Result.Ip}";
+            }
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex);
+      }
+
+      Cameras = response.Data;
+
+      return response;
+
+  }
     public async Task<ServiceResponse<List<CameraImageData>>> GetStereoImage()
     {
       var response = new ServiceResponse<List<CameraImageData>>();

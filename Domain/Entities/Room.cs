@@ -68,6 +68,7 @@ public class Room
 
     public Zone GetZone(string name)
     {
-      return _zones.First(zone => zone.Value.Name == name).Value;
+      var zonePair = _zones.FirstOrDefault(zone => zone.Value.Name == name);
+      return zonePair.Value != null ? zonePair.Value : null;
     }
 }
