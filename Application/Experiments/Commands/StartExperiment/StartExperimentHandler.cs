@@ -1,3 +1,5 @@
+using Application.Experiments.DTOs;
+using Application.Services.CameraService;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
@@ -6,22 +8,37 @@ using MediatR;
 
 namespace Application.Experiments.Commands.StartExperiment;
 
-public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Guid>
+public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, ExperimentInfoDTO>
 {
    // private readonly IExperimentRepository _experimentRepository;
     private readonly IExperimentService _experimentService;
     private readonly IImageProcessingService _imageProcessingService;
     private readonly IMonitoringService _monitoringService;
+    private readonly ICameraService _cameraService;
 
-    public StartExperimentHandler(IExperimentService experimentService, IImageProcessingService imageProcessingService, IMonitoringService monitoringService)
+    public StartExperimentHandler(IExperimentService experimentService, IImageProcessingService imageProcessingService, IMonitoringService monitoringService, ICameraService cameraService)
     {
+        
         _experimentService = experimentService;
         _imageProcessingService = imageProcessingService;
         _monitoringService = monitoringService;
+        _cameraService = cameraService;
     }
 
-    public async Task<Guid> Handle(StartExperimentCommand request, CancellationToken cancellationToken)
+    public async Task<ExperimentInfoDTO> Handle(StartExperimentCommand request, CancellationToken cancellationToken)
     {
+        var response = new ExperimentInfoDTO()
+        {
+            Id = null,
+            Name = "",
+            StartedAt = null
+        };
+        
+        if (_cameraService.GetCameras().Count == 0)
+        {
+            return response;
+        }
+        
         // Start background batch processing service
         if (!_imageProcessingService.IsActive())
             _imageProcessingService.StartProcessing();
@@ -38,7 +55,11 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Gu
         
         var experimentId = _experimentService.StartExperiment(request.withImages);
 
-        return experimentId;
+        response.Id = experimentId;
+        response.Name = _experimentService.GetCurrentExperiment()!.GetExperimentName();
+        response.StartedAt = _experimentService.GetCurrentExperiment()!.GetStartTime();
+
+        return response;
     }
     
 }

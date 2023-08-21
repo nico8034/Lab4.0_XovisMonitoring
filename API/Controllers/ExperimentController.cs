@@ -28,15 +28,21 @@ using Microsoft.AspNetCore.Mvc;
     /// <param name="interval"></param>
     /// <returns></returns>
     [HttpPost("Start/WithImages/{interval:int}")]
-    public async Task<ActionResult<ServiceResponse<Guid>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
+    public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
     {
       var command = new StartExperimentCommand(true, interval);
       var result = await Sender.Send(command,cancellationToken);
 
-      var response = new ServiceResponse<Guid>
+      var response = new ServiceResponse<ExperimentInfoDTO>
       {
         Data = result
       };
+      
+      if (response.Data.Id == null)
+      {
+        response.Success = false;
+        response.Message = "Unable to start experiment, no cameras registered";
+      }
 
       return Ok(response);
     }
@@ -46,16 +52,22 @@ using Microsoft.AspNetCore.Mvc;
     /// </summary>
     /// <returns></returns>
     [HttpPost("Start/NoImages")]
-    public async Task<ActionResult<ServiceResponse<Guid>>> StartWithoutImages(CancellationToken cancellationToken)
+    public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartWithoutImages(CancellationToken cancellationToken)
     {
       
       var command = new StartExperimentCommand(false,0);
       var result = await Sender.Send(command,cancellationToken);
 
-      var response = new ServiceResponse<Guid>
+      var response = new ServiceResponse<ExperimentInfoDTO>
       {
         Data = result
       };
+
+      if (response.Data.Id == null)
+      {
+        response.Success = false;
+        response.Message = "Unable to start experiment, no cameras registered";
+      }
 
       return Ok(response);
     }
