@@ -1,13 +1,17 @@
 using Application.Common;
 using Application.Experiments.Commands.StartExperiment;
 using Application.Experiments.Commands.StopExperiment;
+using Application.Experiments.DTOs;
+using Application.Experiments.Queries;
 using MediatR;
 
 namespace API.Controllers;
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+  /// <summary>
+  /// Experiment controller
+  /// </summary>
   [ApiController]
   [Route("[controller]")]
   public class ExperimentController : ApiController
@@ -17,7 +21,12 @@ using Microsoft.AspNetCore.Mvc;
     {
      
     }
-
+    
+    /// <summary>
+    /// Start an experiment that logs and captures Stereo and Validation images
+    /// </summary>
+    /// <param name="interval"></param>
+    /// <returns></returns>
     [HttpPost("Start/WithImages/{interval:int}")]
     public async Task<ActionResult<ServiceResponse<Guid>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
     {
@@ -30,32 +39,12 @@ using Microsoft.AspNetCore.Mvc;
       };
 
       return Ok(response);
-      
-      //
-      // if (!_experimentService.isRunning())
-      // {
-      //   // Start monitoring service
-      //   if (!_labService.IsActive())
-      //     _labService.StartMonitoringRoom();
-      //
-      //   // Start background worker
-      //   if (!_imageProcessingService.IsActive())
-      //     _imageProcessingService.StartProcessing();
-      //
-      //   _experimentService.SetDataInterval(intervalMs);
-      //
-      //   var withImage = true;
-      //   _experimentService.StartExperiment(withImage);
-      //   response.Message = $"Experiment: {_experimentService.GetCurrentExperiment().GetExperimentName()} has been started (With Images)";
-      // }
-      // else
-      // {
-      //   response.Success = false;
-      //   response.Message = $"An experiment is already in progress: {_experimentService.GetCurrentExperiment().GetExperimentName()}";
-      // }
-      // return response;
     }
-
+  
+    /// <summary>
+    /// Start an experiment that only captures logs
+    /// </summary>
+    /// <returns></returns>
     [HttpPost("Start/NoImages")]
     public async Task<ActionResult<ServiceResponse<Guid>>> StartWithoutImages(CancellationToken cancellationToken)
     {
@@ -68,36 +57,13 @@ using Microsoft.AspNetCore.Mvc;
         Data = result
       };
 
-      return response;
-      // var response = new ServiceResponse<string>();
-      //
-      // if (!_experimentService.isRunning())
-      // {
-      //   // Start monitoring service
-      //   if (!_labService.IsActive())
-      //   {
-      //     _labService.SetInterval(intervalMs);
-      //     _labService.StartMonitoringRoom();
-      //   }
-      //
-      //   // Start background worker
-      //   if (!_imageProcessingService.IsActive())
-      //     _imageProcessingService.StartProcessing();
-      //
-      //   _experimentService.SetDataInterval(intervalMs);
-      //
-      //   var withImage = false;
-      //   _experimentService.StartExperiment(withImage);
-      //   response.Message = $"Experiment: {_experimentService.GetCurrentExperiment().GetExperimentName()} has been started (Without Images)";
-      // }
-      // else
-      // {
-      //   response.Success = false;
-      //   response.Message = $"An experiment is already in progress: {_experimentService.GetCurrentExperiment().GetExperimentName()}";
-      // }
-      // return response;
+      return Ok(response);
     }
-
+    
+    /// <summary>
+    /// Stop an ongoing experiment
+    /// </summary>
+    /// <returns></returns>
     [HttpPost("Stop")]
     public async Task<ActionResult<ServiceResponse<string>>> Stop(CancellationToken cancellationToken)
     {
@@ -108,45 +74,23 @@ using Microsoft.AspNetCore.Mvc;
       {
         Data = result,
       };
-
-      return response;
-      //
-      // var response = new ServiceResponse<string>();
-      //
-      // if (_experimentService.isRunning())
-      // {
-      //   // Stop monitoring service
-      //   if (_labService.IsActive())
-      //     _labService.StopMonitoringRoom();
-      //
-      //   if (_imageProcessingService.IsActive())
-      //     _imageProcessingService.StopProcessing();
-      //
-      //   _experimentService.StopExperiment();
-      //   response.Message = $"Experiment: {_experimentService.GetCurrentExperiment().GetExperimentName()} has been stopped";
-      // }
-      // else
-      // {
-      //   response.Success = false;
-      //   response.Message = "There is no experiment in progress";
-      // }
-      // return response;
+      return Ok(response);
     }
+    
+    /// <summary>
+    /// Get information about the current experiment
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("Current")]
+    public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> Status(CancellationToken cancellationToken)
+    {
+      var query = new GetCurrentExperimentQuery();
+      var result = await Sender.Send(query, cancellationToken);
+      var response = new ServiceResponse<ExperimentInfoDTO>()
+      {
+        Data = result
+      };
 
-    // [HttpGet("CurrentExperiment")]
-    // public async Task<ActionResult<ServiceResponse<string>>> Status()
-    // {
-    //   var response = new ServiceResponse<string>();
-    //   response.Data = _experimentService.GetCurrentExperiment().GetExperimentName();
-    //   if (response.Data != null)
-    //   {
-    //     return Ok(response);
-    //   }
-    //   else
-    //   {
-    //     response.Message = "Unable to get experiment";
-    //     response.Success = false;
-    //     return BadRequest(response);
-    //   }
-    // }
+      return Ok(response);
+    }
   }

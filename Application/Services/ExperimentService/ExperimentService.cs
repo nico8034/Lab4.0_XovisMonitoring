@@ -14,9 +14,9 @@ public class ExperimentService : IExperimentService
     public bool withImages { get; set; } = false;
     public Experiment? currentExperiment { get; set; } = null;
 
-    private ICameraService _xovisService;
-    private IMonitoringService _labService;
-    private IImageProcessingService _imageProcessingService;
+    private readonly ICameraService _xovisService;
+    private readonly IMonitoringService _labService;
+    private readonly IImageProcessingService _imageProcessingService;
 
     public ExperimentService(ICameraService xovisService, IMonitoringService labService, IImageProcessingService imageProcessingService)
     {

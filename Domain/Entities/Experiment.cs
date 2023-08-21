@@ -46,20 +46,20 @@ public class Experiment
       }
     }
 
-    // public DateTime GetStartTime()
-    // {
-    //   return StartTime;
-    // }
-    //
-    // public DateTime GetEndTime()
-    // {
-    //   return EndTime;
-    // }
-    //
-    // public string GetExperimentName()
-    // {
-    //   return ExperimentName;
-    // }
+    public DateTime GetStartTime()
+    {
+      return StartTime;
+    }
+    
+    public DateTime GetEndTime()
+    {
+      return EndTime;
+    }
+    
+    public string GetExperimentName()
+    {
+      return ExperimentName;
+    }
 
     public async Task SaveData()
     {

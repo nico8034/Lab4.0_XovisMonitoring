@@ -9,7 +9,6 @@ namespace Application.Experiments.Commands.StartExperiment;
 public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Guid>
 {
    // private readonly IExperimentRepository _experimentRepository;
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IExperimentService _experimentService;
     private readonly IImageProcessingService _imageProcessingService;
     private readonly IMonitoringService _monitoringService;
