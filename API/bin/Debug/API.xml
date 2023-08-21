@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.Controllers.ExperimentController">
+            <summary>
+            Experiment controller
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ExperimentController.StartExperimentWithImages(System.Threading.CancellationToken,System.Int32)">
+            <summary>
+            Start an experiment that logs and captures Stereo and Validation images
+            </summary>
+            <param name="interval"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ExperimentController.StartWithoutImages(System.Threading.CancellationToken)">
+            <summary>
+            Start an experiment that only captures logs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ExperimentController.Stop(System.Threading.CancellationToken)">
+            <summary>
+            Stop an ongoing experiment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ExperimentController.Status(System.Threading.CancellationToken)">
+            <summary>
+            Get information about the current experiment
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
