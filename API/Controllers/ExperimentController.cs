@@ -37,7 +37,7 @@ using Microsoft.AspNetCore.Mvc;
         response.Data = result;
         return Ok(response);
       }
-      catch (NoCamerasRegistered e)
+      catch (NoCamerasRegisteredException e)
       {
         response.Success = false;
         response.Message = e.Message;
@@ -74,7 +74,7 @@ using Microsoft.AspNetCore.Mvc;
         response.Data = result;
         return Ok(response);
       }
-      catch (NoCamerasRegistered e)
+      catch (NoCamerasRegisteredException e)
       {
         response.Success = false;
         response.Message = e.Message;

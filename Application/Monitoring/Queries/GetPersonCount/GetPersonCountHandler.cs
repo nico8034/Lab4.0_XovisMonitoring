@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Application.Services.MonitoringService;
 using MediatR;
 
@@ -13,6 +14,7 @@ public class GetPersonCountHandler : IRequestHandler<GetPersonCountQuery, int>
 
     public async Task<int> Handle(GetPersonCountQuery request, CancellationToken cancellationToken)
     {
+        if (!_monitoringService.IsActive()) throw new MonitoringServiceNotActiveException();
         return _monitoringService.GetRoom().GetZones().Sum(zone => zone.Value.PersonCount);
     }
 }

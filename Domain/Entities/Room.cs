@@ -66,9 +66,9 @@ public class Room
       return response;
     }
 
-    public Zone GetZone(string name)
+    public Zone? GetZone(string name)
     {
       var zonePair = _zones.FirstOrDefault(zone => zone.Value.Name == name);
-      return zonePair.Value != null ? zonePair.Value : null;
+      return zonePair.Value;
     }
 }

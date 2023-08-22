@@ -29,7 +29,7 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Ex
     {
         if (_cameraService.GetCameras().Count == 0)
         {
-            throw new NoCamerasRegistered();
+            throw new NoCamerasRegisteredException();
         }
 
         if (_experimentService.GetCurrentExperiment() != null)

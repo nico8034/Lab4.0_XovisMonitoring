@@ -34,5 +34,41 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:API.Controllers.MonitoringController">
+            <summary>
+            Controller for the monitoring service
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MonitoringController.Zones(System.Threading.CancellationToken)">
+            <summary>
+            Get data from all zones on registered cameras
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.MonitoringController.Zone(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get data from specific zone by name
+            </summary>
+            <param name="name">The name of the specific zone, use Zones endpoint to get full list of zones</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.MonitoringController.PersonCount(System.Threading.CancellationToken)">
+            <summary>
+            Get the total count of persons across all zones
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.MonitoringController.Start(System.Threading.CancellationToken)">
+            <summary>
+            Start the monitoring service to detect people 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.MonitoringController.Stop(System.Threading.CancellationToken)">
+            <summary>
+            Stop the monitoring service, people will not be registered
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

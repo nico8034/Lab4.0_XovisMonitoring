@@ -1,9 +1,10 @@
+using Application.Exceptions;
 using Application.Services.MonitoringService;
 using MediatR;
 
 namespace Application.Monitoring.Commands.StopMonitoring;
 
-public class StopMonitoringHandler : IRequestHandler<StopMonitoringCommand, bool>
+public class StopMonitoringHandler : IRequestHandler<StopMonitoringCommand, string>
 {
     // private readonly IExperimentRepository _experimentRepository;
     private readonly IMonitoringService _monitoringService;
@@ -13,15 +14,16 @@ public class StopMonitoringHandler : IRequestHandler<StopMonitoringCommand, bool
         _monitoringService = monitoringService;
     }
 
-    public async Task<bool> Handle(StopMonitoringCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(StopMonitoringCommand request, CancellationToken cancellationToken)
     {
+        if (!_monitoringService.IsActive()) throw new MonitoringServiceNotActiveException();
+        
         // Stop monitoring service
         if (_monitoringService.IsActive())
         {
             _monitoringService.StopMonitoringRoom();
         }
 
-        return !_monitoringService.IsActive();
+        return "Monitoring service was successfully stopped";
     }
-    
 }
