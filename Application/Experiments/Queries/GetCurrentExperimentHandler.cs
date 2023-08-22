@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Application.Experiments.DTOs;
 using Application.Services.ExperimentService;
 using Domain.Entities;
@@ -16,18 +17,18 @@ public class GetCurrentExperimentHandler : IRequestHandler<GetCurrentExperimentQ
     
     public async Task<ExperimentInfoDTO> Handle(GetCurrentExperimentQuery request, CancellationToken cancellationToken)
     {
+        
+        if (_experimentService.GetCurrentExperiment() == null)
+        {
+            throw new NoActiveExperimentException();
+        }
+
         var response = new ExperimentInfoDTO()
         {
             Id = null,
             Name = "",
             StartedAt = null
         };
-        
-        if (_experimentService.GetCurrentExperiment() == null)
-        {
-            return response;
-        }
-
         response.Id = _experimentService.GetCurrentExperiment()!.Id;
         response.Name = _experimentService.GetCurrentExperiment()!.GetExperimentName();
         response.StartedAt = _experimentService.GetCurrentExperiment()!.GetStartTime();

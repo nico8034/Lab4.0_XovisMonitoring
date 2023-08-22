@@ -1,9 +1,9 @@
+using Application.Exceptions;
 using Application.Experiments.DTOs;
 using Application.Services.CameraService;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
-using Domain.Abstractions;
 using MediatR;
 
 namespace Application.Experiments.Commands.StartExperiment;
@@ -27,23 +27,28 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Ex
 
     public async Task<ExperimentInfoDTO> Handle(StartExperimentCommand request, CancellationToken cancellationToken)
     {
+        if (_cameraService.GetCameras().Count == 0)
+        {
+            throw new NoCamerasRegistered();
+        }
+
+        if (_experimentService.GetCurrentExperiment() != null)
+        {
+            throw new ExperimentAlreadyActiveException();
+        }
+        
         var response = new ExperimentInfoDTO()
         {
             Id = null,
             Name = "",
             StartedAt = null
         };
-        
-        if (_cameraService.GetCameras().Count == 0)
-        {
-            return response;
-        }
-        
+
         // Start background batch processing service
         if (!_imageProcessingService.IsActive())
             _imageProcessingService.StartProcessing();
        
-        // Start person monitoring service
+        // Start monitoring service
         if (!_monitoringService.IsActive())
             _monitoringService.StartMonitoringRoom();
         
@@ -58,7 +63,6 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Ex
         response.Id = experimentId;
         response.Name = _experimentService.GetCurrentExperiment()!.GetExperimentName();
         response.StartedAt = _experimentService.GetCurrentExperiment()!.GetStartTime();
-
         return response;
     }
     

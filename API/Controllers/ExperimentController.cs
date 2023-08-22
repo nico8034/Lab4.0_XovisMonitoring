@@ -1,4 +1,5 @@
 using Application.Common;
+using Application.Exceptions;
 using Application.Experiments.Commands.StartExperiment;
 using Application.Experiments.Commands.StopExperiment;
 using Application.Experiments.DTOs;
@@ -17,34 +18,43 @@ using Microsoft.AspNetCore.Mvc;
   public class ExperimentController : ApiController
   {
    
-    public ExperimentController(ISender sender) : base(sender)
-    {
-     
-    }
+    public ExperimentController(ISender sender) : base(sender) {}
     
     /// <summary>
     /// Start an experiment that logs and captures Stereo and Validation images
     /// </summary>
-    /// <param name="interval"></param>
+    /// <param name="interval">Interval is in MS and must be > 100</param>
     /// <returns></returns>
     [HttpPost("Start/WithImages/{interval:int}")]
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
     {
       var command = new StartExperimentCommand(true, interval);
-      var result = await Sender.Send(command,cancellationToken);
+      var response = new ServiceResponse<ExperimentInfoDTO> {};
 
-      var response = new ServiceResponse<ExperimentInfoDTO>
+      try
       {
-        Data = result
-      };
-      
-      if (response.Data.Id == null)
+        var result = await Sender.Send(command, cancellationToken);
+        response.Data = result;
+        return Ok(response);
+      }
+      catch (NoCamerasRegistered e)
       {
         response.Success = false;
-        response.Message = "Unable to start experiment, no cameras registered";
+        response.Message = e.Message;
+        return UnprocessableEntity(response);
       }
-
-      return Ok(response);
+      catch (ExperimentAlreadyActiveException e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return Conflict(response);
+      }
+      catch (Exception e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return StatusCode(500, response);
+      }
     }
   
     /// <summary>
@@ -55,21 +65,33 @@ using Microsoft.AspNetCore.Mvc;
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartWithoutImages(CancellationToken cancellationToken)
     {
       
-      var command = new StartExperimentCommand(false,0);
-      var result = await Sender.Send(command,cancellationToken);
+      var command = new StartExperimentCommand(true, 0);
+      var response = new ServiceResponse<ExperimentInfoDTO> {};
 
-      var response = new ServiceResponse<ExperimentInfoDTO>
+      try
       {
-        Data = result
-      };
-
-      if (response.Data.Id == null)
+        var result = await Sender.Send(command, cancellationToken);
+        response.Data = result;
+        return Ok(response);
+      }
+      catch (NoCamerasRegistered e)
       {
         response.Success = false;
-        response.Message = "Unable to start experiment, no cameras registered";
+        response.Message = e.Message;
+        return UnprocessableEntity(response);
       }
-
-      return Ok(response);
+      catch (ExperimentAlreadyActiveException e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return Conflict(response);
+      }
+      catch (Exception e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return StatusCode(500, response);
+      }
     }
     
     /// <summary>
@@ -80,13 +102,26 @@ using Microsoft.AspNetCore.Mvc;
     public async Task<ActionResult<ServiceResponse<string>>> Stop(CancellationToken cancellationToken)
     {
       var command = new StopExperimentCommand();
-      var result = await Sender.Send(command,cancellationToken);
+      var response = new ServiceResponse<string>();
 
-      var response = new ServiceResponse<string>
+      try
       {
-        Data = result,
-      };
-      return Ok(response);
+        var result = await Sender.Send(command,cancellationToken);
+        response.Data = result;
+        return Ok(response);
+      }
+      catch (NoActiveExperimentException e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return NotFound(response);
+      }
+      catch (Exception e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return StatusCode(500, response);
+      }
     }
     
     /// <summary>
@@ -97,12 +132,25 @@ using Microsoft.AspNetCore.Mvc;
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> Status(CancellationToken cancellationToken)
     {
       var query = new GetCurrentExperimentQuery();
-      var result = await Sender.Send(query, cancellationToken);
-      var response = new ServiceResponse<ExperimentInfoDTO>()
-      {
-        Data = result
-      };
+      var response = new ServiceResponse<ExperimentInfoDTO>();
 
-      return Ok(response);
+      try
+      {
+        var result = await Sender.Send(query, cancellationToken);
+        response.Data = result;
+        return Ok(response);
+      }
+      catch (NoActiveExperimentException e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return NotFound(response);
+      }
+      catch (Exception e)
+      {
+        response.Success = false;
+        response.Message = e.Message;
+        return StatusCode(500, response);
+      }
     }
   }
