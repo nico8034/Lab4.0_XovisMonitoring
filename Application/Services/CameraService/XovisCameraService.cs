@@ -56,8 +56,6 @@ public class XovisCameraService : ICameraService
     {
       var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
 
-      if (listOfIps.Contains(cameraIp)) return "Ip already exist";
-
       foreach (var ip in listOfIps)
       {
         if (ip.Equals(cameraIp))
@@ -67,9 +65,7 @@ public class XovisCameraService : ICameraService
           return $@"Removed {cameraIp} from list";
         }
       }
-
       return $"Did not find a match in the list of cameraIps for {cameraIp}";
-
     }
     catch (Exception e)
     {

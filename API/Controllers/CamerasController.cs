@@ -121,7 +121,7 @@ public class CamerasController : ApiController
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     [HttpPost("Reload")]
-    public async Task<ActionResult<ServiceResponse<string>>> Reload(string cameraIp, CancellationToken cancellationToken)
+    public async Task<ActionResult<ServiceResponse<string>>> Reload(CancellationToken cancellationToken)
     {
         var command = new ReloadCamerasCommand();
         var response = new ServiceResponse<string>();

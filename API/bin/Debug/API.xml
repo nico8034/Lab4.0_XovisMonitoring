@@ -34,18 +34,9 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:API.Controllers.CamerasController.Reload(System.String,System.Threading.CancellationToken)">
+        <member name="M:API.Controllers.CamerasController.Reload(System.Threading.CancellationToken)">
             <summary>
             Fetch zones from all cameras registered in persistent list
-            </summary>
-            <param name="cancellationToken"></param>
-            <param name="cameraIp"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:API.Controllers.CamerasController.Remove(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Remove a camera from the persistent list of cameraIps
             </summary>
             <param name="cancellationToken"></param>
             <param name="cameraIp"></param>
@@ -59,6 +50,15 @@
             <param name="file">A .txt file with a list of cameraIps</param>
             <param name="cancellationToken"></param>
             <returns></returns>
+        </member>
+        <member name="M:API.Controllers.CamerasController.Remove(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Remove a camera from the persistent list of cameraIps
+            </summary>
+            <param name="cancellationToken"></param>
+            <param name="cameraIp"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:API.Controllers.ExperimentController">
             <summary>
