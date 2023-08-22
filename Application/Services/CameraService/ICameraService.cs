@@ -10,4 +10,9 @@ public interface ICameraService
     Task<ServiceResponse<List<PersonCountDTO>>> GetPersonCountInView();
     List<Camera> GetCameras();
     Task<ServiceResponse<List<Camera>>> RegisterCameras();
+    Task<List<string>> GetCamerasFromFile();
+    Task<string> AddCameraToFile(string cameraIp);
+    Task<string> RemoveCameraFromFile(string cameraIp);
+    Task AddCamerasFromFile(List<string> cameraIps);
+    
 }

@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Application\\Application.csproj": {}
+    "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Application\\Application.csproj": {
+    "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Application\\obj\\",
+        "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj"
+              "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj"
               }
             }
           }
@@ -49,6 +51,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.1.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[6.0.0-preview.4.21253.5, )"
             }
           },
           "imports": [
@@ -67,26 +73,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj": {
+    "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -134,7 +142,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

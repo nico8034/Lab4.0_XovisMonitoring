@@ -4,6 +4,62 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="T:API.Controllers.CamerasController">
+            <summary>
+            Camera controller
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CamerasController.GetCameras(System.Threading.CancellationToken)">
+            <summary>
+            Get a list of all cameras currently available
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:API.Controllers.CamerasController.GetSavedCameras(System.Threading.CancellationToken)">
+            <summary>
+            Get a file with all cameraIps from persistent storage
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns>A .txt file with all cameraIps registered in persistent storage</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:API.Controllers.CamerasController.Add(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Add a cameraIp to persistent list
+            </summary>
+            <param name="cancellationToken"></param>
+            <param name="cameraIp">A cameraIp as a sting. Format: http://10.179.0.43</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:API.Controllers.CamerasController.Reload(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Fetch zones from all cameras registered in persistent list
+            </summary>
+            <param name="cancellationToken"></param>
+            <param name="cameraIp"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:API.Controllers.CamerasController.Remove(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Remove a camera from the persistent list of cameraIps
+            </summary>
+            <param name="cancellationToken"></param>
+            <param name="cameraIp"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:API.Controllers.CamerasController.UploadCameraList(Microsoft.AspNetCore.Http.IFormFile,System.Threading.CancellationToken)">
+            <summary>
+            Upload a .txt file with a list of cameraIps. Check Cameras/Saved for the format
+            </summary>
+            <param name="file">A .txt file with a list of cameraIps</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:API.Controllers.ExperimentController">
             <summary>
             Experiment controller

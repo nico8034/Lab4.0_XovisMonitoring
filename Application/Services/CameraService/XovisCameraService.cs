@@ -9,26 +9,85 @@ namespace Application.Services.CameraService;
 public class XovisCameraService : ICameraService
 {
   private List<Camera>? Cameras { get; set; }
+  private string filePath { get; set; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
 
 
+  public async Task<List<string>> GetCamerasFromFile()
+  {
+    return new List<string>(await File.ReadAllLinesAsync(filePath));
+  }
+
+  public async Task<string> AddCameraToFile(string cameraIp)
+  {
+    try
+    {
+      var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
+
+      if (listOfIps.Contains(cameraIp)) return "Ip already exist";
+      
+      listOfIps.Add(cameraIp);
+      
+      await File.WriteAllLinesAsync(filePath,listOfIps);
+      return $@"Added {cameraIp} to list";
+
+    }
+    catch (Exception e)
+    {
+      return e.Message;
+    }
+  }
+  
+  public async Task AddCamerasFromFile(List<string> cameraIps)
+  {
+    try
+    {
+      
+      await File.WriteAllLinesAsync(filePath,cameraIps);
+    }
+    catch (Exception e)
+    {
+      Console.WriteLine(e.Message);
+    }
+  }
+  
+  public async Task<string> RemoveCameraFromFile(string cameraIp)
+  {
+    try
+    {
+      var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
+
+      if (listOfIps.Contains(cameraIp)) return "Ip already exist";
+
+      foreach (var ip in listOfIps)
+      {
+        if (ip.Equals(cameraIp))
+        {
+          listOfIps.Remove(ip);
+          await File.WriteAllLinesAsync(filePath,listOfIps);
+          return $@"Removed {cameraIp} from list";
+        }
+      }
+
+      return $"Did not find a match in the list of cameraIps for {cameraIp}";
+
+    }
+    catch (Exception e)
+    {
+      return e.Message;
+    }
+  }
   public List<Camera> GetCameras()
   {
     return Cameras;
   }
   public async Task<ServiceResponse<List<Camera>>> RegisterCameras()
   {
-    var listOfIps = new List<string>
+    var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
+
+    foreach (var ip in listOfIps)
     {
-      "http://10.179.0.46",
-      "http://10.179.0.45",
-      "http://10.179.0.34",
-      "http://10.179.0.43",
-      "http://10.179.0.20",
-      "http://10.179.0.12",
-      "http://10.179.0.28",
-      "http://10.179.0.21"
-    };
-    
+      Console.WriteLine(ip);
+    }
     var response = new ServiceResponse<List<Camera>>()
     {
       Data = new List<Camera>()
