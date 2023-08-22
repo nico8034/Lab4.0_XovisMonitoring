@@ -57,7 +57,7 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Get a file with all cameraIps from persistent storage
+    /// Get a file with all cameraIps from persistent list of cameras
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns>A .txt file with all cameraIps registered in persistent storage</returns>
@@ -81,13 +81,13 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Add a cameraIp to persistent list
+    /// Add a camera Ip to persistent list of cameras
     /// </summary>
     /// <param name="cancellationToken"></param>
-    /// <param name="cameraIp">A cameraIp as a sting. Format: http://10.179.0.43</param>
+    /// <param name="cameraIp">Example: http://10.179.0.43</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    [HttpPost("Add/{cameraIp}")]
+    [HttpPost("/{cameraIp}")]
     public async Task<ActionResult<ServiceResponse<string>>> Add(string cameraIp,CancellationToken cancellationToken)
     {
         var command = new AddCameraCommand(cameraIp);
@@ -114,13 +114,13 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Fetch zones from all cameras registered in persistent list
+    /// Reconfigure cameras and zones from persistent camera IP's
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <param name="cameraIp"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    [HttpPost("Reload")]
+    [HttpPost("Reconfigure")]
     public async Task<ActionResult<ServiceResponse<string>>> Reload(CancellationToken cancellationToken)
     {
         var command = new ReloadCamerasCommand();
