@@ -1,9 +1,7 @@
 using Application.Exceptions;
-using Application.Experiments.Commands.StartExperiment;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
-using Domain.Abstractions;
 using MediatR;
 
 namespace Application.Experiments.Commands.StopExperiment;

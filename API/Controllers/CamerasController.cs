@@ -25,12 +25,12 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Get a list of all cameras currently available
+    /// Get all available cameras
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    [HttpGet]
+    [HttpGet("Available")]
     public async Task<ActionResult<ServiceResponse<List<Camera>>>> GetCameras(CancellationToken cancellationToken)
     {
         var query = new GetCamerasQuery();
@@ -57,7 +57,7 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Get a file with all cameraIps from persistent list of cameras
+    /// Get list of saved cameras
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns>A .txt file with all cameraIps registered in persistent storage</returns>
@@ -81,7 +81,7 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Add a camera Ip to persistent list of cameras
+    /// Add camera to list
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <param name="cameraIp">Example: http://10.179.0.43</param>
@@ -114,13 +114,13 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Reconfigure cameras and zones from persistent camera IP's
+    /// Reload available cameras from list
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <param name="cameraIp"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    [HttpPost("Reconfigure")]
+    [HttpPost("Reload")]
     public async Task<ActionResult<ServiceResponse<string>>> Reload(CancellationToken cancellationToken)
     {
         var command = new ReloadCamerasCommand();
@@ -142,7 +142,7 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Upload a .txt file with a list of cameraIps. Check Cameras/Saved for the format
+    /// Upload .txt file with list of cameraIps. Check Cameras/Saved
     /// </summary>
     /// <param name="file">A .txt file with a list of cameraIps</param>
     /// <param name="cancellationToken"></param>
@@ -174,10 +174,10 @@ public class CamerasController : ApiController
     }
     
     /// <summary>
-    /// Remove a camera from the persistent list of cameraIps
+    /// Remove camera from list
     /// </summary>
     /// <param name="cancellationToken"></param>
-    /// <param name="cameraIp"></param>
+    /// <param name="cameraIp">Example: http://10.179.0.43</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     [HttpDelete("Remove/{cameraIp}")]

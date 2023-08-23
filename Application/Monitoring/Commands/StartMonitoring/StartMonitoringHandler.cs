@@ -1,9 +1,6 @@
 using Application.Exceptions;
 using Application.Services.CameraService;
-using Application.Services.ExperimentService;
-using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
-using Domain.Abstractions;
 using MediatR;
 
 namespace Application.Monitoring.Commands.StartMonitoring;

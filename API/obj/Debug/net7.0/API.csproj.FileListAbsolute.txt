@@ -146,3 +146,5 @@ C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.xml
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.xml
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Application.xml
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
