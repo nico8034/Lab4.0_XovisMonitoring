@@ -51,10 +51,10 @@ public class ExperimentDataController : ApiController
     /// <param name="fullExperimentName">Example: "experiment_28-07-2023T13-49-14" </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet("Download/{fullExperimentName}")]
-    public async Task<ActionResult> DownloadExperiment(string fullExperimentName, CancellationToken cancellationToken)
+    [HttpGet("Download/{experimentName}")]
+    public async Task<ActionResult> DownloadExperiment(string experimentName, CancellationToken cancellationToken)
     {
-        var query = new DownloadExperimentDataQuery(fullExperimentName);
+        var query = new DownloadExperimentDataQuery(experimentName);
 
         try
         {

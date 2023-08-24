@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using API.Exceptions;
 using Application.Common;
 using Domain.Entities;
 using Domain.Entities.JSON;
@@ -9,7 +10,7 @@ namespace Application.Services.CameraService;
 public class XovisCameraService : ICameraService
 {
   private List<Camera>? Cameras { get; set; }
-  private string filePath { get; set; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
+  private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
 
 
   public async Task<List<string>> GetCamerasFromFile()
@@ -92,7 +93,6 @@ public class XovisCameraService : ICameraService
       // create tasks
       var tasks = new List<Task<Camera>>();
 
-      Console.WriteLine("Running");
       try
       {
         // Create HttpClient
@@ -103,68 +103,66 @@ public class XovisCameraService : ICameraService
             "Basic",
             Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
           );
-        // If any cameras registered
-        if (listOfIps != null)
+
+        foreach (var cameraIp in listOfIps)
         {
-          foreach (var cameraIp in listOfIps)
+          var zones = new List<Zone>();
+
+          async Task<Camera> Func()
           {
-            var zones = new List<Zone>();
-            // 
-            async Task<Camera> Func()
-            {
-              // 
-              var httpResponse = await httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
-                HttpCompletionOption.ResponseContentRead);
+            var httpResponse = await httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
+              HttpCompletionOption.ResponseContentRead);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var responseBody = await httpResponse.Content.ReadAsStringAsync();
             
-              httpResponse.EnsureSuccessStatusCode();
+            // Response Empty
+            if (responseBody == null) throw new EmptyResponseBodyException();
+            
+            var res = JsonConvert.DeserializeObject<Root>(responseBody);
+            if ((res.status.code == "OK") && (res.content.element.Count > 0))
+            {
+              var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
 
-              var responseBody = await httpResponse.Content.ReadAsStringAsync();
-
-              if (responseBody != null)
+              // For each of the zones present on the camera
+              foreach (var zone in cameraZones)
               {
-                var res = JsonConvert.DeserializeObject<Root>(responseBody);
-                if ((res.status.code == "OK") && (res.content.element.Count > 0))
-                {
-                  var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
-                  
-                  // For each of the zones present on the camera
-                  foreach (var zone in cameraZones)
-                  {
-                    var zoneName = zone.elementname;
-                    var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
-                    zones.Add(new Zone(cameraIp,zoneName,zonePersonCount.value));
-                  }
-                 
-                }
+                var zoneName = zone.elementname;
+                var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
+                zones.Add(new Zone(cameraIp, zoneName, zonePersonCount.value));
               }
 
-              return new Camera( $"Camera_{cameraIp[^2..]}",cameraIp, zones);
             }
-
-            tasks.Add(Func());
+            return new Camera($"Camera_{cameraIp[^2..]}", cameraIp, zones);
           }
 
-          await Task.WhenAll(tasks);
+          tasks.Add(Func());
+        }
 
-          foreach (var t in tasks)
+        await Task.WhenAll(tasks);
+
+        foreach (var t in tasks)
+        {
+          await t;
+          if (t.IsCompletedSuccessfully)
           {
-            await t;
-            if (t.IsCompletedSuccessfully)
-            {
-              response.Data.Add(t.Result);
-            }
-            else
-            {
-              response.Success = false;
-              response.Message =
-                $"Unable to fetch camera information for {t.Result.Ip}";
-            }
+            response.Data.Add(t.Result);
+          }
+          else
+          {
+            response.Success = false;
+            response.Message = $"Unable to fetch camera information for {t.Result.Ip}";
           }
         }
       }
+      catch (HttpRequestException e)
+      {
+        Console.WriteLine("Unable to connect to Xovis Cameras");
+      }
       catch (Exception ex)
       {
-        Console.WriteLine(ex);
+        Console.WriteLine(ex.Message);
       }
 
       Cameras = response.Data;
