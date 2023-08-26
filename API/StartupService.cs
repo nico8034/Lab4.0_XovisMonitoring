@@ -21,12 +21,10 @@ public class StartupService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        var filename = Environment.CurrentDirectory + $@"/cameras.json";
         var cameras = new List<Camera>();
 
         try
         {
-            // cameras = JsonConvert.DeserializeObject<List<Camera>>(await File.ReadAllTextAsync(filename, cancellationToken));
             await _xovisCameraService.RegisterCameras();
             cameras = _xovisCameraService.GetCameras();
             Console.WriteLine(cameras);

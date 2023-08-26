@@ -10,9 +10,22 @@ namespace Application.Services.CameraService;
 public class XovisCameraService : ICameraService
 {
   private List<Camera>? Cameras { get; set; }
-  private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
-
-
+  // private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
+  
+  private string filePath 
+  {
+    get 
+    {
+      // Check if running inside Docker (based on an environment variable you set in the Dockerfile)
+      if (Environment.GetEnvironmentVariable("DOCKER_ENV") == "True")
+      {
+        Console.WriteLine(Environment.GetEnvironmentVariable("DOCKER_ENV"));
+        return Path.Combine(Environment.CurrentDirectory, "Application/Services/CameraService/cameras.txt");
+      }
+      return Path.Combine(Environment.CurrentDirectory, @"..\Application/Services/CameraService/cameras.txt");
+    }
+  }
+  
   public async Task<List<string>> GetCamerasFromFile()
   {
     return new List<string>(await File.ReadAllLinesAsync(filePath));
