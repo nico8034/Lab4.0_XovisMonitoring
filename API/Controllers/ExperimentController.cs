@@ -23,7 +23,7 @@ using Microsoft.AspNetCore.Mvc;
     /// <summary>
     /// Start an experiment that logs and captures Stereo and Validation images
     /// </summary>
-    /// <param name="interval">Interval is in MS and must be > 100</param>
+    /// <param name="interval">Interval is in MS and must be >= 100</param>
     /// <returns></returns>
     [HttpPost("Start/WithImages/{interval:int}")]
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)

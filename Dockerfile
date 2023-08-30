@@ -23,10 +23,11 @@ FROM base AS final
 WORKDIR /app
 ENV DOCKER_ENV=True
 COPY --from=publish /app/publish .
-RUN mkdir -p /Application/Services/CameraService/
-WORKDIR /app/Application/Services/CameraService
-COPY cameras.txt .
-WORKDIR /app
+#RUN mkdir -p /API/Experiments/
+#RUN mkdir -p /Application/Services/CameraService/
+#WORKDIR /app/Application/Services/CameraService
+#COPY cameras.txt .
+#WORKDIR /app
 ENTRYPOINT ["dotnet", "API.dll"]
 
 

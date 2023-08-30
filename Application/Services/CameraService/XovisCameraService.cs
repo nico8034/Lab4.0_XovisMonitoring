@@ -21,7 +21,7 @@ public class XovisCameraService : ICameraService
       {
         return Path.Combine(Environment.CurrentDirectory, "Application/Services/CameraService/cameras.txt");
       }
-      return Path.Combine(Environment.CurrentDirectory, @"..\Application/Services/CameraService/cameras.txt");
+      return Path.Combine(Environment.CurrentDirectory, @"../Application/Services/CameraService/cameras.txt");
     }
   }
   
