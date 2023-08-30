@@ -27,7 +27,6 @@ public class StartupService : IHostedService
         {
             await _xovisCameraService.RegisterCameras();
             cameras = _xovisCameraService.GetCameras();
-            Console.WriteLine(cameras);
             _monitoringService.SetupRoom();
         }
         catch (Exception ex)

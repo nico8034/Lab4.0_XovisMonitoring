@@ -93,10 +93,6 @@ public class XovisCameraService : ICameraService
   {
     var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
 
-    foreach (var ip in listOfIps)
-    {
-      Console.WriteLine(ip);
-    }
     var response = new ServiceResponse<List<Camera>>()
     {
       Data = new List<Camera>()
