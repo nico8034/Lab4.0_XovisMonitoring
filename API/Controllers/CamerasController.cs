@@ -1,4 +1,5 @@
 using System.Text;
+using API.Exceptions;
 using Application.Cameras.Commands;
 using Application.Cameras.Commands.AddCamerasFile;
 using Application.Cameras.Commands.ReloadCameras;
@@ -132,6 +133,12 @@ public class CamerasController : ApiController
             response.Data = result;
             response.Message = result;
             return Ok(response);
+        }
+        catch (NoCameraConnection e)
+        {
+            response.Success = false;
+            response.Message = e.Message;
+            return BadRequest(response);
         }
         catch (Exception e)
         {

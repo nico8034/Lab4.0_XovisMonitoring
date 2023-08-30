@@ -1,3 +1,4 @@
+using API.Exceptions;
 using Application.Services.CameraService;
 using MediatR;
 
@@ -14,7 +15,9 @@ public class ReloadCamerasHandler : IRequestHandler<ReloadCamerasCommand,string>
     
     public async Task<string> Handle(ReloadCamerasCommand request, CancellationToken cancellationToken)
     {
-        await _cameraService.RegisterCameras();
+        var result = await _cameraService.RegisterCameras();
+        if (result.Data.Count == 0) throw new NoCameraConnection();
+        
         return "Cameras have been registered";
     }
 }

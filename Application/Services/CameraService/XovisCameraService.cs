@@ -19,7 +19,6 @@ public class XovisCameraService : ICameraService
       // Check if running inside Docker (based on an environment variable you set in the Dockerfile)
       if (Environment.GetEnvironmentVariable("DOCKER_ENV") == "True")
       {
-        Console.WriteLine(Environment.GetEnvironmentVariable("DOCKER_ENV"));
         return Path.Combine(Environment.CurrentDirectory, "Application/Services/CameraService/cameras.txt");
       }
       return Path.Combine(Environment.CurrentDirectory, @"..\Application/Services/CameraService/cameras.txt");
