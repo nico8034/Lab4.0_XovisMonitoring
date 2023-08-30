@@ -48,7 +48,7 @@ public class ExperimentDataController : ApiController
     /// <summary>
     /// Download Zip folder containing specific experiment data. Use /ExperimentData to get names
     /// </summary>
-    /// <param name="fullExperimentName">Example: "experiment_28-07-2023T13-49-14" </param>
+    /// <param name="experimentName">Example: "experiment_28-07-2023T13-49-14" </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("Download/{experimentName}")]

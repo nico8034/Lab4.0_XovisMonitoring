@@ -69,7 +69,7 @@
             <summary>
             Start an experiment that logs and captures Stereo and Validation images
             </summary>
-            <param name="interval">Interval is in MS and must be > 100</param>
+            <param name="interval">Interval is in MS and must be >= 100</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.ExperimentController.StartWithoutImages(System.Threading.CancellationToken)">

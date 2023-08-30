@@ -6,14 +6,11 @@ public class GetExperimentsDataHandler : IRequestHandler<GetExperimentsDataQuery
 {
     public async Task<List<string>> Handle(GetExperimentsDataQuery request, CancellationToken cancellationToken)
     {
-        var folderPath = Environment.GetEnvironmentVariable("DOCKER_ENV") == "True"
-            ? Path.Combine(Environment.CurrentDirectory, "Experiments")
-            : @"/Experiments";
+        // var folderPath = Environment.GetEnvironmentVariable("DOCKER_ENV") == "True"
+        //     ? Path.Combine(Environment.CurrentDirectory, "Experiments")
+        //     : Environment.CurrentDirectory + @"\Experiments";
 
-        Console.WriteLine(folderPath);
-        Console.WriteLine(Environment.CurrentDirectory);
-        
-        // var experimentsFolderPath = Environment.CurrentDirectory + @"\Experiments";
+        var folderPath = Path.Combine(Environment.CurrentDirectory, "Experiments");
         var dir = new DirectoryInfo(folderPath);
 
         if (!dir.Exists) throw new DirectoryNotFoundException();
