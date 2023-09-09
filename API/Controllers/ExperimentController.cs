@@ -65,7 +65,7 @@ using Microsoft.AspNetCore.Mvc;
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartWithoutImages(CancellationToken cancellationToken)
     {
       
-      var command = new StartExperimentCommand(true, 0);
+      var command = new StartExperimentCommand(false, 0);
       var response = new ServiceResponse<ExperimentInfoDTO> {};
 
       try
