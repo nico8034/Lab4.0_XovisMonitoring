@@ -28,7 +28,7 @@ public class ImageProcessingService : IImageProcessingService
       isRunnung = false;
     }
 
-    private async void Processing()
+    private async Task Processing()
     {
       while (isRunnung)
       {
