@@ -23,6 +23,7 @@
       <PackageReference Include="MediatR" Version="12.1.1" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+      <PackageReference Include="MQTTnet" Version="4.3.1.873" />
     </ItemGroup>
 
     <ItemGroup>

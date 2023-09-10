@@ -3,6 +3,7 @@ using Application.Services.CameraService;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
+using Application.Services.MqttService;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,7 +24,7 @@ public static class ApplicationServiceRegistration
         services.AddSingleton<IExperimentService, ExperimentService>();
         services.AddSingleton<IMonitoringService, MonitoringService>();
         services.AddSingleton<IImageProcessingService, ImageProcessingService>();
-        
+        services.AddSingleton<MqttBackgroundService>();
         return services;
     }
 }

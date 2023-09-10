@@ -14,12 +14,6 @@ public class ImageProcessingService : IImageProcessingService
     public void StartProcessing()
     {
       isRunnung = true;
-
-      // Thread
-      // var ts = new ThreadStart(Processing);
-      // var backgroundThread = new Thread(ts);
-      // backgroundThread.Start();
-      
       Task.Run(Processing);
     }
 
@@ -28,7 +22,7 @@ public class ImageProcessingService : IImageProcessingService
       isRunnung = false;
     }
 
-    public async void Processing()
+    private async void Processing()
     {
       while (isRunnung)
       {
