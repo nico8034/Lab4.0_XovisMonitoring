@@ -2,9 +2,10 @@ namespace Application.Services.MqttService;
 
 public interface IMqttService
 {
-    void SetupMqttService();
+    Task SetupMqttService();
     void StartPublishing();
     void StopPublishing();
-    
+    Task PublishMessage(string topic, string message);
+
 
 }

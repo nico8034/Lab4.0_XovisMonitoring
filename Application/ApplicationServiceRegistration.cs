@@ -24,7 +24,7 @@ public static class ApplicationServiceRegistration
         services.AddSingleton<IExperimentService, ExperimentService>();
         services.AddSingleton<IMonitoringService, MonitoringService>();
         services.AddSingleton<IImageProcessingService, ImageProcessingService>();
-        services.AddSingleton<MqttBackgroundService>();
+        services.AddSingleton<IMqttService,MqttBackgroundService>();
         return services;
     }
 }

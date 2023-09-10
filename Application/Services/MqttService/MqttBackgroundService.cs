@@ -10,26 +10,37 @@ namespace Application.Services.MqttService;
 public class MqttBackgroundService : IMqttService
 {
     private volatile bool isRunning = false;
-    private IMqttClient mqttClient = null;
+    private IMqttClient mqttClient;
 
     public bool IsActive()
     {
         return isRunning;
     }
 
-    public void SetupMqttService()
+    /// <summary>
+    /// Setup MQTT - Connect to broker
+    /// </summary>
+    public async Task SetupMqttService()
     {
         // Logic for setting up MQTT
         var factory = new MqttFactory();
         mqttClient = factory.CreateMqttClient();
 
         var options = new MqttClientOptionsBuilder()
-            .WithClientId("YourClientId") // Define your client id
-            .WithTcpServer("YourServerAddress", port: 1883) // Adjust accordingly
+            .WithClientId("XovisZones")
+            .WithTcpServer("127.0.0.1", port: 1883)
             .WithCleanSession()
             .Build();
 
-        mqttClient.ConnectAsync(options).Wait();
+        try
+        {
+            await mqttClient.ConnectAsync(options);
+            Console.WriteLine("MQTT Connected");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
             
         // TODO: Add reconnect policies and other necessary configurations.
     }
@@ -90,7 +101,6 @@ public class MqttBackgroundService : IMqttService
                 // Logic for how often messages should be published
                 // Will use PublishMessage Method
                 await PublishMessage("yourTopic", "yourMessage"); // Adjust these values as per your logic.
-
                 await Task.Delay(2000);
             }
             catch(Exception ex)

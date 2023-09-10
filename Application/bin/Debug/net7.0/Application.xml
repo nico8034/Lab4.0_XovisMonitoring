@@ -9,5 +9,10 @@
             Background service for handling MQTT Publishing
             </summary>
         </member>
+        <member name="M:Application.Services.MqttService.MqttBackgroundService.SetupMqttService">
+            <summary>
+            Setup MQTT - Connect to broker
+            </summary>
+        </member>
     </members>
 </doc>
