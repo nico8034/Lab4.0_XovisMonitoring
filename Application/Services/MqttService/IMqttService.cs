@@ -1,10 +1,14 @@
+using MQTTnet.Client;
+
 namespace Application.Services.MqttService;
 
 public interface IMqttService
 {
-    Task SetupMqttService();
+    MqttClientOptions SetupMqttService();
+    bool isConnected();
+    Task Connect();
     void StartPublishing();
-    void StopPublishing();
+    Task StopPublishing();
     Task PublishMessage(string topic, string message);
 
 

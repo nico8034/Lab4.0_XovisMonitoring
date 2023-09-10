@@ -1,7 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Mqtt.Exceptions;
 using Application.Services.MqttService;
 using MediatR;
+using MQTTnet.Client;
 
 namespace Application.Mqtt.commands.StartPublishZones;
 
@@ -15,8 +17,13 @@ public class StartPublishZonesHandler : IRequestHandler<StartPublishZonesCommand
     public async Task<string> Handle(StartPublishZonesCommand request, CancellationToken cancellationToken)
     {
         // Logic start MQTT zone data publisher
-        await _mqttService.SetupMqttService();
-        await _mqttService.PublishMessage("testTopic", "Hello World");
+
+        if (!_mqttService.isConnected())
+        {
+            throw new MqttNotConnected();
+        }
+        
+        _mqttService.StartPublishing();
         return "Started MQTT Zone Publisher";
     }
 }

@@ -20,29 +20,49 @@ public class MqttBackgroundService : IMqttService
     /// <summary>
     /// Setup MQTT - Connect to broker
     /// </summary>
-    public async Task SetupMqttService()
+    public MqttClientOptions SetupMqttService()
     {
         // Logic for setting up MQTT
         var factory = new MqttFactory();
         mqttClient = factory.CreateMqttClient();
 
-        var options = new MqttClientOptionsBuilder()
+        return new MqttClientOptionsBuilder()
             .WithClientId("XovisZones")
-            .WithTcpServer("127.0.0.1", port: 1883)
+            .WithTcpServer("localhost", port: 1883)
             .WithCleanSession()
             .Build();
+       
+        //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Desktop\mosquittoServer\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+    }
 
+    public async Task Connect()
+    {
+        var options = SetupMqttService();
+        
         try
-        {
-            await mqttClient.ConnectAsync(options);
-            Console.WriteLine("MQTT Connected");
+        {  
+            // Establish Connection
+            var connectionResult = await mqttClient.ConnectAsync(options);
+
+            if (connectionResult.ResultCode == MqttClientConnectResultCode.Success)
+            {
+                Console.WriteLine("Connected to MQTT broker successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Failed to connect to MQTT broker: {connectionResult.ResultCode}");
+            }
+
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
-            
-        // TODO: Add reconnect policies and other necessary configurations.
+    }
+
+    public bool isConnected()
+    {
+        return mqttClient.IsConnected;
     }
 
     public void StartPublishing()
@@ -51,10 +71,10 @@ public class MqttBackgroundService : IMqttService
         Task.Run(Publishing);
     }
 
-    public void StopPublishing()
+    public async Task StopPublishing()
     {
         isRunning = false;
-        DisconnectFromBroker();
+        await DisconnectFromBroker();
     }
     
     private async Task DisconnectFromBroker()
