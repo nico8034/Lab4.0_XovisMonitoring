@@ -4,5 +4,10 @@
         <name>Application</name>
     </assembly>
     <members>
+        <member name="T:Application.Services.MqttService.MqttBackgroundService">
+            <summary>
+            Background service for handling MQTT Publishing
+            </summary>
+        </member>
     </members>
 </doc>

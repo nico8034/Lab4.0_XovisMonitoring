@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "7gaKxEe0Y3RkePgprl4kGhMI2AvnUwPfjGuTzLBEkNv+fAW40Fb9kPFR5C30cCJG4TTp0tnQL2auWFbMxOMw7A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nicol\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
+    "C:\\Users\\nicol\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.6.0\\fluentvalidation.dependencyinjectionextensions.11.6.0.nupkg.sha512",
+    "C:\\Users\\nicol\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

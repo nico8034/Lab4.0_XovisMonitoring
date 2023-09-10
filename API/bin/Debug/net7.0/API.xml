@@ -154,5 +154,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.MqttController.StartPublishing(System.Threading.CancellationToken)">
+            <summary>
+            Start publishing zones over MQTT
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.MqttController.StopPublishing(System.Threading.CancellationToken)">
+            <summary>
+            Stop publishing zones over MQTT
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

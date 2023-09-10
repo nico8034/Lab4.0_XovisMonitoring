@@ -1,3 +1,5 @@
+using System;
+
 namespace API.Exceptions;
 
 public class NoCameraConnection : Exception

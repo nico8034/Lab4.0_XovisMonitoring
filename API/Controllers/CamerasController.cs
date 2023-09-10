@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using API.Exceptions;
 using Application.Cameras.Commands;
 using Application.Cameras.Commands.AddCamerasFile;
@@ -9,6 +14,7 @@ using Application.Common;
 using Application.Exceptions;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;

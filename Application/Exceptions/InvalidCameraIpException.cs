@@ -1,3 +1,5 @@
+using System;
+
 namespace Application.Exceptions;
 
 public class InvalidCameraIpException : Exception
