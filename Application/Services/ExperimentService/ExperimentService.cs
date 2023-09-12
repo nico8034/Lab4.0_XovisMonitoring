@@ -15,13 +15,13 @@ public class ExperimentService : IExperimentService
     public Experiment? currentExperiment { get; set; } = null;
 
     private readonly ICameraService _xovisService;
-    private readonly IMonitoringService _labService;
+    private readonly IMonitoringService _monitoringService;
     private readonly IImageProcessingService _imageProcessingService;
 
-    public ExperimentService(ICameraService xovisService, IMonitoringService labService, IImageProcessingService imageProcessingService)
+    public ExperimentService(ICameraService xovisService, IMonitoringService monitoringService, IImageProcessingService imageProcessingService)
     {
       _xovisService = xovisService;
-      _labService = labService;
+      _monitoringService = monitoringService;
       _imageProcessingService = imageProcessingService;
     }
 
@@ -111,7 +111,7 @@ public class ExperimentService : IExperimentService
               new ExperimentData(
                 stereoImage.Data,
                 validationImage.Data,
-                _labService.GetRoom().GetZonePeopleCount()
+                _monitoringService.GetRoom().GetZonePeopleCount()
               )
             );
 
@@ -133,7 +133,7 @@ public class ExperimentService : IExperimentService
         // For experiments without images
         else
         {
-          var data = new ExperimentData(_labService.GetRoom().GetZonePeopleCount());
+          var data = new ExperimentData(_monitoringService.GetRoom().GetZonePeopleCount());
           currentExperiment.AddExperimentData(data);
           Console.WriteLine($"Experimentdata count: {currentExperiment.ExperimentData.Count}");
             

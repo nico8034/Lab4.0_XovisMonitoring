@@ -11,13 +11,14 @@ public class Zone
     [JsonConstructor]
     public Zone(string id, string name)
     {
-        this.Id = id;
-        this.Name = name;
+        Id = id;
+        Name = name;
     }
     
     public Zone(string id, string name, int personCount)
     {
-        this.Id = id;
-        this.Name = name;
+        Id = id;
+        Name = name;
+        PersonCount = personCount;
     }
 }

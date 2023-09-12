@@ -7,7 +7,7 @@ public class MonitoringService: IMonitoringService
 {
     public bool isActive { get; set; } = false;
     public Room room { get; set; }
-    public int pullInterval { get; set; } = 200;
+    public int pullInterval { get; set; } = 50;
 
     private ICameraService _xovisService;
     public MonitoringService(ICameraService xovisService)
@@ -19,6 +19,17 @@ public class MonitoringService: IMonitoringService
     {
         // State of room
         room = new Room();
+    }
+
+    public void ConfigureZonesOnRoom(List<Camera> cameras)
+    {
+        foreach (var camera in cameras)
+        {
+            if (camera.Zones.Count == 0) continue;
+            {
+              room.AddZone(camera.Zones);
+            }
+        }
     }
 
     public void SetInterval(int intervalMs)
@@ -49,12 +60,6 @@ public class MonitoringService: IMonitoringService
     public void StartMonitoringRoom()
     {
         isActive = true;
-        
-        // Thread
-        // var ts = new ThreadStart(RunMonitoringRoom);
-        // var backgroundThread = new Thread(ts);
-        // backgroundThread.Start();
-
         Task.Run(RunMonitoringRoom);
     }
 

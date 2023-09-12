@@ -28,6 +28,8 @@ public class StartupService : IHostedService
             await _xovisCameraService.RegisterCameras();
             cameras = _xovisCameraService.GetCameras();
             _monitoringService.SetupRoom();
+            // _monitoringService.ConfigureZonesOnRoom(cameras);
+
         }
         catch (Exception ex)
         {
@@ -50,15 +52,6 @@ public class StartupService : IHostedService
         _monitoringService.GetRoom().AddZone(cameraZones);
 
         Console.WriteLine($"Zone count: {_monitoringService.GetRoom().GetZones().Count}");
-        //
-        // foreach (var item in _roomService.GetRoom().GetZones())
-        // {
-        //     Console.WriteLine(item.Value.Id);
-        //     Console.WriteLine(item.Value.Name);
-        // }
-
-        // Start the background processing worker
-        // _imageProcessingService.StartProcessing();
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

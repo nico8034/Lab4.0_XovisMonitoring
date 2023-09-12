@@ -411,10 +411,14 @@ public class XovisCameraService : ICameraService
       {
         Console.WriteLine(ex.Message);
       }
-
-      // Console.WriteLine(response.Data.Count);
+      
+      foreach (var personCountDto in response.Data)
+      {
+        Console.WriteLine(personCountDto.zone.Name);
+        Console.WriteLine(personCountDto.zone.PersonCount);
+        Console.WriteLine(personCountDto.Timestamp);
+      }
       return response;
-
-}
+    }
     
 }

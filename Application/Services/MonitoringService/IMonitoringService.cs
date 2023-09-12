@@ -10,4 +10,5 @@ public interface IMonitoringService
     Room GetRoom();
     bool IsActive();
     void SetInterval(int intervalMs);
+    void ConfigureZonesOnRoom(List<Camera> cameras);
 }

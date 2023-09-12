@@ -10,4 +10,5 @@ public interface IExperimentService
     void SetDataInterval(int intervalMilliseconds);
     bool isRunning();
     Experiment? GetCurrentExperiment();
+    
 }
