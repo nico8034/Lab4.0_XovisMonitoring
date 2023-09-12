@@ -113,21 +113,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\nicol\\Documents\\gitProjects\\Lab4.0_XovisMonitoring\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -167,7 +165,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

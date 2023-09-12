@@ -1,3 +1,4 @@
+using Application.Services.MonitoringService;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
 using MQTTnet.Client;
@@ -11,10 +12,21 @@ public class MqttBackgroundService : IMqttService
 {
     private volatile bool isRunning = false;
     private IMqttClient mqttClient;
+    private readonly IMonitoringService _monitoringService;
+
+    public MqttBackgroundService(IMonitoringService monitoringService)
+    {
+        _monitoringService = monitoringService;
+    }
 
     public bool IsActive()
     {
         return isRunning;
+    }
+
+    public IMqttClient GetMqttClient()
+    {
+        return mqttClient;
     }
 
     /// <summary>
@@ -28,11 +40,11 @@ public class MqttBackgroundService : IMqttService
 
         return new MqttClientOptionsBuilder()
             .WithClientId("XovisZones")
-            .WithTcpServer("localhost", port: 1883)
+            .WithTcpServer("127.0.0.1", port: 1883)
             .WithCleanSession()
             .Build();
        
-        //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Desktop\mosquittoServer\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+        //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
     }
 
     public async Task Connect()
@@ -119,9 +131,8 @@ public class MqttBackgroundService : IMqttService
             try
             {
                 // Logic for how often messages should be published
-                // Will use PublishMessage Method
-                await PublishMessage("yourTopic", "yourMessage"); // Adjust these values as per your logic.
-                await Task.Delay(2000);
+                await PublishMessage("XovisZones", $"{_monitoringService.GetRoom().GetZones().Values.ToList()}");
+                await Task.Delay(100);
             }
             catch(Exception ex)
             {

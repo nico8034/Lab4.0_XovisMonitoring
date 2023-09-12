@@ -17,6 +17,12 @@ public class StartPublishZonesHandler : IRequestHandler<StartPublishZonesCommand
     public async Task<string> Handle(StartPublishZonesCommand request, CancellationToken cancellationToken)
     {
         // Logic start MQTT zone data publisher
+        await _mqttService.Connect();
+
+        if (_mqttService.GetMqttClient() == null)
+        {
+            throw new MqttClientNotInstantiated();
+        }
 
         if (!_mqttService.isConnected())
         {

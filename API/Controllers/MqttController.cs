@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Common;
 using Application.Mqtt.commands.StartPublishZones;
 using Application.Mqtt.commands.StopPublishZones;
+using Application.Mqtt.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,18 @@ public class MqttController : ApiController
             var result = await Sender.Send(command, cancellationToken);
             response.Data = result;
             return Ok(response);
+        }
+        catch (MqttClientNotInstantiated e)
+        {
+            response.Success = false;
+            response.Message = e.Message;
+            return BadRequest(response);
+        }
+        catch (MqttNotConnected e)
+        {
+            response.Success = false;
+            response.Message = e.Message;
+            return BadRequest(response);
         }
         catch (Exception e)
         {
