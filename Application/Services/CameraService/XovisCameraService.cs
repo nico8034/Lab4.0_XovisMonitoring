@@ -411,13 +411,6 @@ public class XovisCameraService : ICameraService
       {
         Console.WriteLine(ex.Message);
       }
-      
-      foreach (var personCountDto in response.Data)
-      {
-        Console.WriteLine(personCountDto.zone.Name);
-        Console.WriteLine(personCountDto.zone.PersonCount);
-        Console.WriteLine(personCountDto.Timestamp);
-      }
       return response;
     }
     

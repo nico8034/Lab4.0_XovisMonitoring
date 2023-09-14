@@ -51,6 +51,7 @@ public class StartupService : IHostedService
         }
         _monitoringService.GetRoom().AddZone(cameraZones);
 
+        Console.WriteLine($"Camera count: {_xovisCameraService.GetCameras().Count}");
         Console.WriteLine($"Zone count: {_monitoringService.GetRoom().GetZones().Count}");
     }
 
