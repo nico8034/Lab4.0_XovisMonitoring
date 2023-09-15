@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Application.Services.ImageProcessingService;
@@ -34,7 +28,7 @@ public class ImageProcessingService : IImageProcessingService
       {
         if (dataToBeProcessed.Count > 0)
         {
-          Console.WriteLine("WORKER: Starting batch processing");
+          Console.WriteLine("WORKER: Processing batch");
           for (var i = 0; i < dataToBeProcessed.Count; i++)
           {
             var data = dataToBeProcessed.ElementAt(i);
@@ -62,8 +56,9 @@ public class ImageProcessingService : IImageProcessingService
       // List to store log data
       logFileData = new List<string>();
 
-      var experimentHasImages = experimentData.StereoImages != null && experimentData.ValidationImages != null;
-      
+      // var experimentHasImages = experimentData.StereoImages != null && experimentData.ValidationImages != null;
+      var experimentHasImages = experimentData.ValidationImages != null;
+   
       // EXPERIMENT WITH IMAGES
       if (experimentHasImages)
       {
@@ -72,7 +67,7 @@ public class ImageProcessingService : IImageProcessingService
         
         try
         {
-          SaveImageFromExperimentData(experimentDataLocatiton, experimentData.StereoImages, experimentData);
+          // SaveImageFromExperimentData(experimentDataLocatiton, experimentData.StereoImages, experimentData);
           SaveImageFromExperimentData(experimentDataLocatiton, experimentData.ValidationImages, experimentData);
 
           foreach (var line in logFileData)
@@ -87,16 +82,16 @@ public class ImageProcessingService : IImageProcessingService
           Console.WriteLine(ex.Message);
         }
       }
-      // EXPERIMENT OUT IMAGES
+      // EXPERIMENT WITHOUT IMAGES
       else
       {
         foreach (var item in experimentData.Zones)
         {
-          logFileData.Add($"{experimentData.Timestamp:yyyy-MM-dd},{experimentData.Timestamp:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
+          logFileData.Add($"{item.Value.Item3:yyyy-MM-dd},{experimentData.Timestamp:HH:mm:ss.fff},{item.Value.Item3:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
         }
 
         if (!File.Exists($"{experimentDataLocatiton}/personCountLog.txt"))
-          logFileData.Insert(0, "Date, Time, Zone, Person Count");
+          logFileData.Insert(0, "Date, Time logged, Updated, Zone, Person Count");
 
         foreach (var line in logFileData)
         {
@@ -125,13 +120,6 @@ public class ImageProcessingService : IImageProcessingService
             {
               logFileData.Add($"{imageName}.png, {images.ElementAt(i).cameraInfo.Ip}, {images.ElementAt(i).timestamp:yyyy-MM-dd},{images.ElementAt(i).timestamp:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
             }
-            // foreach (var item in expermentDataInformation.Zones)
-            // {
-            //   Console.WriteLine(item.Value.Item1);
-            //   Console.WriteLine(images.ElementAt(i).cameraInfo.Ip);
-            //   if (item.Value.Item1 == images.ElementAt(i).cameraInfo.Ip)
-            //     logFileData.Add($"{imageName}.png, {images.ElementAt(i).cameraInfo.Ip}, {images.ElementAt(i).timestamp.ToString("yyyy-MM-dd HH:mm:ss.fff")}, {item.Value.Item1}, {item.Value.Item2}");
-            // }
           }
         }
       }

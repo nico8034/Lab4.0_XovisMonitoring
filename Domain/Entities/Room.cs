@@ -55,13 +55,16 @@ public class Room
       return _zones;
     }
 
-    public Dictionary<string, (string, int)> GetZonePeopleCount()
+    // TODO rewrite logic to not use dictionary with struct
+    // The struct is as follows (string cameraIp, int number of people in the zone, Datetime when this was registered,  
+    public Dictionary<string, (string, int, DateTime)> GetZonePeopleCount()
     {
-      var response = new Dictionary<string, (string, int)>();
+      var response = new Dictionary<string, (string, int, DateTime)>();
       foreach (var zone in _zones)
       {
-        (string, int) zoneAndPersonCount = (zone.Value.CameraIp, zone.Value.PersonCount);
-        response.Add(zone.Value.ZoneName, zoneAndPersonCount);
+        (string, int, DateTime) zone_count_timestamp = (zone.Value.CameraIp, zone.Value.PersonCount, zone.Value.LastUpdate);
+        // Actual zone name and the struct
+        response.Add(zone.Value.ZoneName, zone_count_timestamp);
       }
       return response;
     }

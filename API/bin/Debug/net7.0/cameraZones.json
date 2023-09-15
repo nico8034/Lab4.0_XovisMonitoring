@@ -124,5 +124,14 @@
     "TopRight": 13.2,
     "BottomLeft": 13.3,
     "BottomRight": 13.4
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone 10",
+    "PersonCount": 0,
+    "TopLeft": 8.1,
+    "TopRight": 8.2,
+    "BottomLeft": 8.3,
+    "BottomRight": 8.4
   }
 ]

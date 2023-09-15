@@ -72,7 +72,7 @@ public class Experiment
       LogFileData = new List<string>();
 
       // IF EXPERIMENT WITH IMAGE DATA
-      if (ExperimentData[0].StereoImages != null && ExperimentData[0].ValidationImages != null)
+      if (ExperimentData[0].ValidationImages != null)
       {
         try
         {
@@ -80,7 +80,7 @@ public class Experiment
           for (int i = 0; i < this.ExperimentData.Count; i++)
           {
             var data = ExperimentData.ElementAt(i);
-            SaveCameraImage(experimentDataLocation, data.StereoImages, data);
+            // SaveCameraImage(experimentDataLocation, data.StereoImages, data);
             SaveCameraImage(experimentDataLocation, data.ValidationImages, data);
           }
 
@@ -106,12 +106,12 @@ public class Experiment
         {
           foreach (var item in data.Zones)
           {
-            LogFileData.Add($"{data.Timestamp:yyyy-MM-dd},{data.Timestamp:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
+            LogFileData.Add($"{item.Value.Item3:yyyy-MM-dd},{data.Timestamp:HH:mm:ss.fff},{item.Value.Item3:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
           }
         }
         
         if (!File.Exists($"{experimentDataLocation}/personCountLog.txt"))
-          LogFileData.Insert(0, "Date, Time, Zone, Person Count");
+          LogFileData.Insert(0, "Date, Time logged, Updated, Zone, Person Count");
         
         foreach (var line in LogFileData)
         {

@@ -84,6 +84,7 @@ public class MonitoringService: IMonitoringService
                     {
                         // Update the personCount for the specific zone in the room model
                         zone.Value.PersonCount = zonePersonCountDto.ZoneReference.PersonCount;
+                        zone.Value.LastUpdate = zonePersonCountDto.CalculatedTimeStamp;
                     }
                 }
             }

@@ -11,6 +11,7 @@ public class Zone
     public double TopRight { get; set; } = 0;
     public double BottomLeft { get; set; } = 0;
     public double BottomRight { get; set; } = 0;
+    public DateTime LastUpdate { get; set; } = DateTime.Now;
     
     public Zone(string cameraIp, string zoneName)
     {
