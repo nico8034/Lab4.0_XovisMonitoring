@@ -11,8 +11,7 @@ public class Zone
     public double TopRight { get; set; } = 0;
     public double BottomLeft { get; set; } = 0;
     public double BottomRight { get; set; } = 0;
-
-    [JsonConstructor]
+    
     public Zone(string cameraIp, string zoneName)
     {
         CameraIp = cameraIp;
@@ -26,6 +25,7 @@ public class Zone
         PersonCount = personCount;
     }
     
+    [JsonConstructor]
     public Zone(string cameraIp, string zoneName, int personCount,double topLeft, double topRight, double bottomLeft, double bottomRight)
     {
         CameraIp = cameraIp;

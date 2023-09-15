@@ -9,12 +9,7 @@
     <list default="true" id="b2fc7ce1-9184-48a3-bb36-f05d7545a462" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.XovisProject_v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.XovisProject_v2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/StartupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/StartupService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Services/CameraService/ICameraService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Services/CameraService/ICameraService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Services/CameraService/XovisCameraService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Services/CameraService/XovisCameraService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Services/MonitoringService/MonitoringService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Services/MonitoringService/MonitoringService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Room.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/Entities/Zone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Zone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/ValueObjects/PersonCountDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/ValueObjects/ZonePersonCountDTO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +110,7 @@
       <workItem from="1694539092335" duration="58000" />
       <workItem from="1694698595833" duration="2218000" />
       <workItem from="1694728471575" duration="331000" />
-      <workItem from="1694773149627" duration="3343000" />
+      <workItem from="1694773149627" duration="5173000" />
     </task>
     <servers />
   </component>
