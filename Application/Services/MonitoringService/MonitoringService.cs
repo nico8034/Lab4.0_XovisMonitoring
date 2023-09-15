@@ -68,19 +68,22 @@ public class MonitoringService: IMonitoringService
         while (isActive)
         {
             Thread.Sleep(pullInterval);
-            var personCount = await _xovisService.GetPersonCountInView();
+            var result = await _xovisService.GetPersonCountInView();
             
             // Skip
-            if (personCount.Data == null) continue;
+            if (result.Data == null) continue;
             
-            // Find match & update in room model
-            foreach (var countRecord in personCount.Data)
+            // Check each zonePersonCountDTO
+            foreach (var zonePersonCountDto in result.Data)
             {
+                // Check against the zones registered on the room model
                 foreach (var zone in room.GetZones())
                 {
-                    if (zone.Value.Name.Equals(countRecord.zone.Name))
+                    // If cameraIP and ZoneName is a match
+                    if (zone.Value.ZoneName.Equals(zonePersonCountDto.ZoneReference.ZoneName) && (zone.Value.CameraIp.Equals(zonePersonCountDto.ZoneReference.CameraIp)))
                     {
-                        zone.Value.PersonCount = countRecord.zone.PersonCount;
+                        // Update the personCount for the specific zone in the room model
+                        zone.Value.PersonCount = zonePersonCountDto.ZoneReference.PersonCount;
                     }
                 }
             }

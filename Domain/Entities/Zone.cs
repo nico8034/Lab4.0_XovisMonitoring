@@ -4,21 +4,36 @@ namespace Domain.Entities;
 
 public class Zone
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
+    public string CameraIp { get; set; }
+    public string ZoneName { get; set; }
     public int PersonCount { get; set; } = 0;
+    public double TopLeft { get; set; } = 0;
+    public double TopRight { get; set; } = 0;
+    public double BottomLeft { get; set; } = 0;
+    public double BottomRight { get; set; } = 0;
 
     [JsonConstructor]
-    public Zone(string id, string name)
+    public Zone(string cameraIp, string zoneName)
     {
-        Id = id;
-        Name = name;
+        CameraIp = cameraIp;
+        ZoneName = zoneName;
     }
     
-    public Zone(string id, string name, int personCount)
+    public Zone(string cameraIp, string zoneName, int personCount)
     {
-        Id = id;
-        Name = name;
+        CameraIp = cameraIp;
+        ZoneName = zoneName;
         PersonCount = personCount;
+    }
+    
+    public Zone(string cameraIp, string zoneName, int personCount,double topLeft, double topRight, double bottomLeft, double bottomRight)
+    {
+        CameraIp = cameraIp;
+        ZoneName = zoneName;
+        PersonCount = personCount;
+        TopLeft = topLeft;
+        TopRight = topRight;
+        BottomLeft = bottomLeft;
+        BottomRight = bottomRight;
     }
 }

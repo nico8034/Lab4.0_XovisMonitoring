@@ -34,14 +34,14 @@ public class Room
 
     public void AddZone(Zone zone)
     {
-      _zones.Add(zone.Name, zone);
+      _zones.Add(zone.ZoneName, zone);
     }
     
     public void AddZone(List<Zone> zones)
     {
       foreach (var zone in zones)
       {
-        _zones.Add(zone.Name,zone);
+        _zones.Add(zone.ZoneName,zone);
       }
     }
 
@@ -60,15 +60,15 @@ public class Room
       var response = new Dictionary<string, (string, int)>();
       foreach (var zone in _zones)
       {
-        (string, int) zoneAndPersonCount = (zone.Value.Id, zone.Value.PersonCount);
-        response.Add(zone.Value.Name, zoneAndPersonCount);
+        (string, int) zoneAndPersonCount = (zone.Value.CameraIp, zone.Value.PersonCount);
+        response.Add(zone.Value.ZoneName, zoneAndPersonCount);
       }
       return response;
     }
 
     public Zone? GetZone(string name)
     {
-      var zonePair = _zones.FirstOrDefault(zone => zone.Value.Name == name);
+      var zonePair = _zones.FirstOrDefault(zone => zone.Value.ZoneName == name);
       return zonePair.Value;
     }
 }

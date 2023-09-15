@@ -307,15 +307,15 @@ public class XovisCameraService : ICameraService
       return response;
     }
 
-    public async Task<ServiceResponse<List<PersonCountDTO>>> GetPersonCountInView()
+    public async Task<ServiceResponse<List<ZonePersonCountDTO>>> GetPersonCountInView()
     {
-      var response = new ServiceResponse<List<PersonCountDTO>>
+      var response = new ServiceResponse<List<ZonePersonCountDTO>>
       {
-        Data = new List<PersonCountDTO>()
+        Data = new List<ZonePersonCountDTO>()
       };
 
       // create tasks
-      var tasks = new List<Task<List<PersonCountDTO>>>();
+      var tasks = new List<Task<List<ZonePersonCountDTO>>>();
 
       try
       {
@@ -333,12 +333,12 @@ public class XovisCameraService : ICameraService
           foreach (var camera in Cameras)
           {
             // 
-            async Task<List<PersonCountDTO>> Func()
+            async Task<List<ZonePersonCountDTO>> Func()
             {
-              var listOfPersonCounts = new List<PersonCountDTO>();
-              var personCountDTO = new PersonCountDTO
+              var listOfPersonCounts = new List<ZonePersonCountDTO>();
+              var personCountDTO = new ZonePersonCountDTO
               {
-                CameraInfo = camera
+                CameraReference = camera
               };
 
               // Time the call
@@ -363,7 +363,7 @@ public class XovisCameraService : ICameraService
                   var calculatedTimestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
 
                   // cameraData.XovisTimeStamp = res.content.
-                  personCountDTO.Timestamp = calculatedTimestamp;
+                  personCountDTO.CalculatedTimeStamp = calculatedTimestamp;
 
                   var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
                   
@@ -372,10 +372,10 @@ public class XovisCameraService : ICameraService
                   {
                     var zoneName = zone.elementname;
                     var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
-                    listOfPersonCounts.Add(new PersonCountDTO()
+                    listOfPersonCounts.Add(new ZonePersonCountDTO()
                     {
-                      Timestamp = calculatedTimestamp,
-                      zone = new Zone(camera.Ip,zoneName,zonePersonCount.value),
+                      CalculatedTimeStamp = calculatedTimestamp,
+                      ZoneReference = new Zone(camera.Ip,zoneName,zonePersonCount.value),
                       XovisTimeStamp = zone.livedata.time
                     });
                   }

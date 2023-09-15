@@ -45,8 +45,8 @@ public class StartupService : IHostedService
             Console.WriteLine($@"camera Ip: {camera.Ip}");
             foreach (var zone in camera.Zones)
             {
-                Console.WriteLine($@"camera zone: {zone.Name}");
-                cameraZones.Add(new Zone(camera.Ip,zone.Name));
+                Console.WriteLine($@"camera zone: {zone.ZoneName}");
+                cameraZones.Add(new Zone(camera.Ip,zone.ZoneName));
             }
         }
         _monitoringService.GetRoom().AddZone(cameraZones);
