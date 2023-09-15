@@ -37,11 +37,18 @@ public class MqttBackgroundService : IMqttService
         // Logic for setting up MQTT
         var factory = new MqttFactory();
         mqttClient = factory.CreateMqttClient();
-
+    
+        // Targets:
+        // digitechi4.tek.sdu.dk:1883
+        // tek-sec-cobot-api.tek.sdu.dk:1883
+        // 127.0.0.1
+        
+        
         return new MqttClientOptionsBuilder()
             .WithClientId("XovisZones")
-            .WithTcpServer("127.0.0.1", port: 1883)
+            .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
             .WithCleanSession()
+            .WithCredentials("semantic","s3mant1c")
             .Build();
        
         //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
