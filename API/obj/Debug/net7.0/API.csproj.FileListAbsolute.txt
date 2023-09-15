@@ -53,7 +53,6 @@ C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\obj\Debug\net7.0\API.genru
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\obj\Debug\net7.0\ref\API.dll
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\appsettings.json
-C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\cameras.json
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.exe
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.deps.json
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.runtimeconfig.json

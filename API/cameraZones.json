@@ -73,7 +73,7 @@
   },
   {
     "CameraIp": "http://10.179.0.167",
-    "ZoneName": "Zone I",
+    "ZoneName": "Zone 1",
     "PersonCount": 0,
     "TopLeft": 8.1,
     "TopRight": 8.2,
@@ -81,8 +81,8 @@
     "BottomRight": 8.4
   },
   {
-    "CameraIp": "http://10.179.0.168",
-    "ZoneName": "Zone J",
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone 2",
     "PersonCount": 0,
     "TopLeft": 9.1,
     "TopRight": 9.2,
@@ -90,8 +90,8 @@
     "BottomRight": 9.4
   },
   {
-    "CameraIp": "http://10.179.0.166",
-    "ZoneName": "Zone K",
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone 3",
     "PersonCount": 0,
     "TopLeft": 10.1,
     "TopRight": 10.2,
@@ -99,8 +99,8 @@
     "BottomRight": 10.4
   },
   {
-    "CameraIp": "http://10.179.0.160",
-    "ZoneName": "Zone L",
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone 4",
     "PersonCount": 0,
     "TopLeft": 11.1,
     "TopRight": 11.2,
@@ -108,8 +108,8 @@
     "BottomRight": 11.4
   },
   {
-    "CameraIp": "http://10.179.0.159",
-    "ZoneName": "Zone M",
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone 5",
     "PersonCount": 0,
     "TopLeft": 12.1,
     "TopRight": 12.2,
@@ -117,8 +117,8 @@
     "BottomRight": 12.4
   },
   {
-    "CameraIp": "http://10.179.0.158",
-    "ZoneName": "Zone N",
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone 6",
     "PersonCount": 0,
     "TopLeft": 13.1,
     "TopRight": 13.2,

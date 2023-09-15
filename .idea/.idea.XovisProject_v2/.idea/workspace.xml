@@ -8,8 +8,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b2fc7ce1-9184-48a3-bb36-f05d7545a462" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.XovisProject_v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.XovisProject_v2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/StartupService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/StartupService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Zone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Zone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net7.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net7.0/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net7.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net7.0/API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net7.0/cameraZones.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/bin/Debug/net7.0/cameraZones.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/bin/Debug/net7.0/cameras.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/cameraZones.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/cameraZones.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/cameras.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/API/obj/Debug/net7.0/API.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +118,7 @@
       <workItem from="1694539092335" duration="58000" />
       <workItem from="1694698595833" duration="2218000" />
       <workItem from="1694728471575" duration="331000" />
-      <workItem from="1694773149627" duration="5173000" />
+      <workItem from="1694773149627" duration="6694000" />
     </task>
     <servers />
   </component>
