@@ -106,7 +106,7 @@ public class Experiment
         {
           foreach (var item in data.Zones)
           {
-            LogFileData.Add($"{item.Value.Item3:yyyy-MM-dd},{data.Timestamp:HH:mm:ss.fff},{item.Value.Item3:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
+            LogFileData.Add($"{item.Value.Item3:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{item.Value.Item3:HH:mm:ss.fff}, {item.Key}, {item.Value.Item2}");
           }
         }
         
