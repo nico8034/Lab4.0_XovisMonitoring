@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Application.Services.CameraService;
 using Domain.Entities;
 
@@ -65,10 +66,15 @@ public class MonitoringService: IMonitoringService
 
     public async void RunMonitoringRoom()
     {
+        var stopwatch = new Stopwatch();
         while (isActive)
         {
             Thread.Sleep(pullInterval);
+            stopwatch.Start();
             var result = await _xovisService.GetPersonCountInView();
+            stopwatch.Stop();
+            Console.WriteLine($"MONITORING: Fetched PersonCount - time in ms {stopwatch.ElapsedMilliseconds}");
+            stopwatch.Reset();
             
             // Skip
             if (result.Data == null) continue;

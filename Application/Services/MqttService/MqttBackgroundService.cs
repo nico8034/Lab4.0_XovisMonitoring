@@ -2,6 +2,7 @@ using Application.Services.MonitoringService;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
 using MQTTnet.Client;
+using Newtonsoft.Json;
 
 namespace Application.Services.MqttService;
 
@@ -46,12 +47,15 @@ public class MqttBackgroundService : IMqttService
         
         return new MqttClientOptionsBuilder()
             .WithClientId("XovisZones")
-            .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
+            .WithTcpServer("localhost", port: 1883)
+            // .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
             .WithCleanSession()
-            .WithCredentials("semantic","s3mant1c")
+            // .WithCredentials("semantic","s3mant1c")
             .Build();
        
         //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+        //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+        
     }
 
     public async Task Connect()
@@ -138,8 +142,9 @@ public class MqttBackgroundService : IMqttService
             try
             {
                 // Logic for how often messages should be published
-                await PublishMessage("XovisZones", $"{_monitoringService.GetRoom().GetZones().Values.ToList()}");
-                await Task.Delay(100);
+                string jsonPayload = JsonConvert.SerializeObject(_monitoringService.GetRoom().GetZones());
+                await PublishMessage("XovisZones", jsonPayload);
+                await Task.Delay(10);
             }
             catch(Exception ex)
             {

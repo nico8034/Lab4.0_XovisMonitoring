@@ -1,6 +1,5 @@
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\appsettings.json
-C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\cameras.json
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.exe
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.deps.json
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\API.runtimeconfig.json
@@ -104,3 +103,12 @@ C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\obj\Debug\net7.0
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\obj\Debug\net7.0\ref\API.dll
 C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\cameraZones.json
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\cameraZones.json
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Logging.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll

@@ -52,11 +52,16 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Ex
         if (!_monitoringService.IsActive())
             _monitoringService.StartMonitoringRoom();
         
-        // Start experiment service
+        // Set interval for experiments with images
         if (request.withImages)
         {
             _experimentService.SetDataInterval(request.interval);
-        } 
+        }
+        else
+        // Increase batchSize for experiments without images (just logs)
+        {
+            _experimentService.SetBatchsize(100);
+        }
         
         var experimentId = _experimentService.StartExperiment(request.withImages);
 

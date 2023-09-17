@@ -8,6 +8,7 @@ public interface IExperimentService
     void StopExperiment();
     Task RunExperiment();
     void SetDataInterval(int intervalMilliseconds);
+    void SetBatchsize(int batchsize);
     bool isRunning();
     Experiment? GetCurrentExperiment();
     

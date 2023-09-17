@@ -19,12 +19,23 @@ public static class ApplicationServiceRegistration
             configuration.RegisterServicesFromAssembly(assembly));
 
         services.AddValidatorsFromAssembly(assembly);
+        services.AddHttpClient();
+        services.AddHttpClient<ICameraService, XovisCameraService>(client =>
+        {
+            client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue(
+                    "Basic",
+                    Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
+                );
+            client.Timeout = TimeSpan.FromSeconds(10); // example timeout
+        });
         
-        services.AddSingleton<ICameraService, XovisCameraService>();
+        // services.AddSingleton<ICameraService, XovisCameraService>();
         services.AddSingleton<IExperimentService, ExperimentService>();
         services.AddSingleton<IMonitoringService, MonitoringService>();
         services.AddSingleton<IImageProcessingService, ImageProcessingService>();
         services.AddSingleton<IMqttService,MqttBackgroundService>();
+        
         return services;
     }
 }

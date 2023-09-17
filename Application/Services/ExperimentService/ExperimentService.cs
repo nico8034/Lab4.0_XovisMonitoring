@@ -73,22 +73,27 @@ public class ExperimentService : IExperimentService
       dataInterval = intervalMilliseconds;
     }
 
+    public void SetBatchsize(int batchsize)
+    {
+      batchSize = batchsize;
+    }
+
     public async Task RunExperiment()
     {
       var stopwatch = new Stopwatch();
-      
       Console.WriteLine("Running");
       while (_isRunning)
       {
 
         await Task.Delay(dataInterval);
+        stopwatch.Start();
 
         if (currentExperiment == null) continue;
 
         // For experiments with images
         if (withImages)
         {
-          stopwatch.Start();
+          // stopwatch.Start();
           // Get Images from xovisService
           // var stereoImage = await _xovisService.GetStereoImage();
           var validationImage = await _xovisService.GetValidationImage();
@@ -125,11 +130,10 @@ public class ExperimentService : IExperimentService
         {
           var data = new ExperimentData(_monitoringService.GetRoom().GetZonePeopleCount());
           currentExperiment.AddExperimentData(data);
-          stopwatch.Stop();
-          Console.WriteLine($"Experiment: data input: {currentExperiment.ExperimentData.Count} - time in ms {stopwatch.ElapsedMilliseconds}");
-          stopwatch.Reset();
-          // Console.WriteLine($"Experimentdata count: {currentExperiment.ExperimentData.Count}");
-            
+          
+          // Log how much data we got so fare
+          if(currentExperiment.ExperimentData.Count > 0 && currentExperiment.ExperimentData.Count % 10 == 0) Console.WriteLine($"EXPERIMENT: Added data {currentExperiment.ExperimentData.Count}");
+          
           if (currentExperiment.ExperimentData.Count != batchSize) continue;
             
           _imageProcessingService.SetExperimentName(currentExperiment.ExperimentName);
