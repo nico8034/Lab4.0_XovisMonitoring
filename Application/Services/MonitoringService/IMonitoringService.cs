@@ -11,4 +11,6 @@ public interface IMonitoringService
     bool IsActive();
     void SetInterval(int intervalMs);
     void ConfigureZonesOnRoom(List<Camera> cameras);
+    void ShouldLog(bool logging);
+    void SetExperimentName(string experimentName);
 }

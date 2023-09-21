@@ -43,32 +43,32 @@ public class StartExperimentHandler : IRequestHandler<StartExperimentCommand, Ex
             Name = "",
             StartedAt = null
         };
-
-        // Start background batch processing service
-        if (!_imageProcessingService.IsActive())
-            _imageProcessingService.StartProcessing();
-       
-        // Start monitoring service
-        if (!_monitoringService.IsActive())
-            _monitoringService.StartMonitoringRoom();
-        
-        // Set interval for experiments with images
-        if (request.withImages)
-        {
-            _experimentService.SetDataInterval(request.interval);
-        }
-        else
-        // Increase batchSize for experiments without images (just logs)
-        {
-            _experimentService.SetBatchsize(100);
-        }
         
         var experimentId = _experimentService.StartExperiment(request.withImages);
+        
+        // Images
+        if (request.withImages)
+        {
+            if (!_imageProcessingService.IsActive())
+                _imageProcessingService.StartProcessing();
 
+            if (!_monitoringService.IsActive())
+                _monitoringService.StartMonitoringRoom();
+        
+            _experimentService.SetDataInterval(request.interval);
+        }
+        // No images
+        else
+        {
+            _monitoringService.SetExperimentName(_experimentService.GetCurrentExperiment().GetExperimentName());
+            _monitoringService.ShouldLog(true);
+            if (!_monitoringService.IsActive())
+                _monitoringService.StartMonitoringRoom();
+        }
+        
         response.Id = experimentId;
         response.Name = _experimentService.GetCurrentExperiment()!.GetExperimentName();
         response.StartedAt = _experimentService.GetCurrentExperiment()!.GetStartTime();
         return response;
     }
-    
 }

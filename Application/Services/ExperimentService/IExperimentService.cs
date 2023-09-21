@@ -11,5 +11,6 @@ public interface IExperimentService
     void SetBatchsize(int batchsize);
     bool isRunning();
     Experiment? GetCurrentExperiment();
-    
+    bool GetWithImages();
+
 }

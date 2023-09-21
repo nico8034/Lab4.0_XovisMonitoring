@@ -35,12 +35,15 @@ public class ExperimentService : IExperimentService
       // Experiment
       currentExperiment = new Experiment();
       
-      
-      // State
-      _isRunning = true;
-      
-      // Task
-      Task.Run(RunExperiment);
+      //TODO TESTING
+      if (withImages)
+      {
+        // State
+        _isRunning = true;
+        
+        // Task
+        Task.Run(RunExperiment);
+      }
 
       return currentExperiment.Id;
     }
@@ -52,20 +55,23 @@ public class ExperimentService : IExperimentService
 
     public async void StopExperiment()
     {
-      if (!_isRunning)
-        return;
       
       // return if no experiment
       if (currentExperiment == null) return;
       
       _isRunning = false;
-      await currentExperiment.Stop();
+      if(withImages) await currentExperiment.Stop();
       currentExperiment = null;
     }
 
     public int GetDataInterval()
     {
       return dataInterval;
+    }
+
+    public bool GetWithImages()
+    {
+      return withImages;
     }
 
     public void SetDataInterval(int intervalMilliseconds)
@@ -81,7 +87,6 @@ public class ExperimentService : IExperimentService
     public async Task RunExperiment()
     {
       var stopwatch = new Stopwatch();
-      Console.WriteLine("Running");
       while (_isRunning)
       {
 
@@ -126,21 +131,21 @@ public class ExperimentService : IExperimentService
           }
         }
         // For experiments without images
-        else
-        {
-          var data = new ExperimentData(_monitoringService.GetRoom().GetZonePeopleCount());
-          currentExperiment.AddExperimentData(data);
-          
-          // Log how much data we got so fare
-          if(currentExperiment.ExperimentData.Count > 0 && currentExperiment.ExperimentData.Count % 10 == 0) Console.WriteLine($"EXPERIMENT: Added data {currentExperiment.ExperimentData.Count}");
-          
-          if (currentExperiment.ExperimentData.Count != batchSize) continue;
-            
-          _imageProcessingService.SetExperimentName(currentExperiment.ExperimentName);
-          _imageProcessingService.AddData(currentExperiment.ExperimentData);
-          currentExperiment.ExperimentData.Clear();
-          Console.WriteLine("Moved experiment data to processing");
-        }
+        // else
+        // {
+        //   var data = new ExperimentData(_monitoringService.GetRoom().GetZonePeopleCount());
+        //   currentExperiment.AddExperimentData(data);
+        //   
+        //   // Log how much data we got so fare
+        //   if(currentExperiment.ExperimentData.Count > 0 && currentExperiment.ExperimentData.Count % 10 == 0) Console.WriteLine($"EXPERIMENT: Added data {currentExperiment.ExperimentData.Count}");
+        //   
+        //   if (currentExperiment.ExperimentData.Count != batchSize) continue;
+        //     
+        //   _imageProcessingService.SetExperimentName(currentExperiment.ExperimentName);
+        //   _imageProcessingService.AddData(currentExperiment.ExperimentData);
+        //   currentExperiment.ExperimentData.Clear();
+        //   Console.WriteLine("Moved experiment data to processing");
+        // }
       }
     }
 

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Application.Services.CameraService;
+using Application.Services.ExperimentService;
 using Domain.Entities;
 
 namespace Application.Services.MonitoringService;
@@ -8,7 +9,9 @@ public class MonitoringService: IMonitoringService
 {
     public bool isActive { get; set; } = false;
     public Room room { get; set; }
-    public int pullInterval { get; set; } = 50;
+    public int pullInterval { get; set; } = 20;
+    public bool shouldLog { get; set; } = false;
+    public string ExperimentName { get; set; } = string.Empty;
 
     private ICameraService _xovisService;
     public MonitoringService(ICameraService xovisService)
@@ -31,6 +34,11 @@ public class MonitoringService: IMonitoringService
               room.AddZone(camera.Zones);
             }
         }
+    }
+
+    public void ShouldLog(bool logging)
+    {
+        shouldLog = logging;
     }
 
     public void SetInterval(int intervalMs)
@@ -58,18 +66,45 @@ public class MonitoringService: IMonitoringService
         isActive = false;
     }
 
+    public void SetExperimentName(string experimentName)
+    {
+        ExperimentName = experimentName;
+    }
+
     public void StartMonitoringRoom()
     {
         isActive = true;
         Task.Run(RunMonitoringRoom);
     }
 
+    public async Task WriteLog(ZonePersonCountDTO zone)
+    {
+        // Check storage path
+        var experimentDataLocatiton = Environment.CurrentDirectory + $@"/Experiments/{ExperimentName}";
+      
+        // Create directory
+        if (!Directory.Exists(experimentDataLocatiton))
+            Directory.CreateDirectory(experimentDataLocatiton);
+        
+        // Create log file if it doesnt exist
+        if (!File.Exists($"{experimentDataLocatiton}/personCountLog.txt"))
+        {
+            await File.WriteAllTextAsync($"{experimentDataLocatiton}/personCountLog.txt","Date, Time logged, Updated, Zone, Person Count");
+        }
+        // Write to file if it exists
+        else
+        {
+            await using var sw = new StreamWriter($"{experimentDataLocatiton}/personCountLog.txt", true);
+            await sw.WriteLineAsync($"{zone.CalculatedTimeStamp:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{zone.CalculatedTimeStamp:HH:mm:ss.fff}, {zone.ZoneReference.ZoneName}, {zone.ZoneReference.PersonCount}");
+        }
+    } 
+
     public async void RunMonitoringRoom()
     {
         var stopwatch = new Stopwatch();
         while (isActive)
         {
-            // Thread.Sleep(pullInterval);
+            Thread.Sleep(pullInterval);
             stopwatch.Start();
             var result = await _xovisService.GetPersonCountInView();
             stopwatch.Stop();
@@ -93,6 +128,7 @@ public class MonitoringService: IMonitoringService
                         zone.Value.LastUpdate = zonePersonCountDto.CalculatedTimeStamp;
                     }
                 }
+                if(shouldLog) await WriteLog(zonePersonCountDto);
             }
         }
     }
