@@ -63,10 +63,11 @@ public class StartupService : IHostedService
             Console.WriteLine($"Camera: {zone.CameraIp}");
             Console.WriteLine($"Zone: {zone.ZoneName}");
             Console.WriteLine("Coordinates:");
-            Console.WriteLine($"TopLeft: {zone.TopLeft}");
-            Console.WriteLine($"TopRight: {zone.TopRight}");
-            Console.WriteLine($"BottomLeft: {zone.BottomLeft}");
-            Console.WriteLine($"BottomRight: {zone.BottomRight}");
+            foreach (var point in zone.Points)
+            {
+                Console.WriteLine(point.Corner);
+                Console.WriteLine($"({point.X},{point.Y})");
+            }
         }
         
         _monitoringService.GetRoom().AddZone(predefinedZones);

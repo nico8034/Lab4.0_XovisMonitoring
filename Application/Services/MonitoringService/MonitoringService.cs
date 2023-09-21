@@ -69,7 +69,7 @@ public class MonitoringService: IMonitoringService
         var stopwatch = new Stopwatch();
         while (isActive)
         {
-            Thread.Sleep(pullInterval);
+            // Thread.Sleep(pullInterval);
             stopwatch.Start();
             var result = await _xovisService.GetPersonCountInView();
             stopwatch.Stop();

@@ -27,7 +27,7 @@ public static class ApplicationServiceRegistration
                     "Basic",
                     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
                 );
-            client.Timeout = TimeSpan.FromMilliseconds(100); // FromSeconds(10); // example timeout
+            client.Timeout = TimeSpan.FromMilliseconds(200); // FromSeconds(10); // example timeout
         });
         
         // services.AddSingleton<ICameraService, XovisCameraService>();

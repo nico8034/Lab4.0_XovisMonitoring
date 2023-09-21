@@ -112,3 +112,11 @@ C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Logging.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\API\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
