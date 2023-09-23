@@ -1,3 +1,7 @@
 .idea/
 API/Experiments/
 .vscode/
+Domain/obj/
+Infrastructure/obj/
+API/obj/
+Application/obj
