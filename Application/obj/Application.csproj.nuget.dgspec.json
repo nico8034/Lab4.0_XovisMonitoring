@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -98,6 +101,9 @@
         "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\nicol\\Desktop\\git\\Lab4.0_XovisMonitoring\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

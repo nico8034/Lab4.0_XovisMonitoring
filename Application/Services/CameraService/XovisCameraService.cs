@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using API.Exceptions;
 using Application.Common;
+using Application.Services.cameraInfo;
 using Domain.Entities;
 using Domain.Entities.JSON;
 using Newtonsoft.Json;
@@ -10,20 +11,22 @@ namespace Application.Services.CameraService;
 public class XovisCameraService : ICameraService
 {
   private readonly HttpClient _httpClient;
+  private readonly CameraInfoProvider _cameraInfoProvider;
 
-  public XovisCameraService(HttpClient httpClient)
+  public XovisCameraService(HttpClient httpClient, CameraInfoProvider cameraInfoProvider)
   {
     _httpClient = httpClient;
-    Cameras = new List<Camera>(); 
-    Task.Run(() => RegisterCameras()).Wait();
+    _cameraInfoProvider = cameraInfoProvider;
+    Cameras = _cameraInfoProvider.Cameras;
+    // Task.Run(() => RegisterCameras()).Wait();
   }
 
   private List<Camera>? Cameras { get; set; }
   // private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
-  
-  private string filePath 
+
+  private string filePath
   {
-    get 
+    get
     {
       // Check if running inside Docker (based on an environment variable you set in the Dockerfile)
       if (Environment.GetEnvironmentVariable("DOCKER_ENV") == "True")
@@ -33,7 +36,7 @@ public class XovisCameraService : ICameraService
       return Path.Combine(Environment.CurrentDirectory, @"../Application/Services/CameraService/cameras.txt");
     }
   }
-  
+
   public async Task<List<string>> GetCamerasFromFile()
   {
     return new List<string>(await File.ReadAllLinesAsync(filePath));
@@ -46,10 +49,10 @@ public class XovisCameraService : ICameraService
       var listOfIps = new List<string>(await File.ReadAllLinesAsync(filePath));
 
       if (listOfIps.Contains(cameraIp)) return "Ip already exist";
-      
+
       listOfIps.Add(cameraIp);
-      
-      await File.WriteAllLinesAsync(filePath,listOfIps);
+
+      await File.WriteAllLinesAsync(filePath, listOfIps);
       return $@"Added {cameraIp} to list";
 
     }
@@ -58,20 +61,20 @@ public class XovisCameraService : ICameraService
       return e.Message;
     }
   }
-  
+
   public async Task AddCamerasFromFile(List<string> cameraIps)
   {
     try
     {
-      
-      await File.WriteAllLinesAsync(filePath,cameraIps);
+
+      await File.WriteAllLinesAsync(filePath, cameraIps);
     }
     catch (Exception e)
     {
       Console.WriteLine(e.Message);
     }
   }
-  
+
   public async Task<string> RemoveCameraFromFile(string cameraIp)
   {
     try
@@ -83,7 +86,7 @@ public class XovisCameraService : ICameraService
         if (ip.Equals(cameraIp))
         {
           listOfIps.Remove(ip);
-          await File.WriteAllLinesAsync(filePath,listOfIps);
+          await File.WriteAllLinesAsync(filePath, listOfIps);
           return $@"Removed {cameraIp} from list";
         }
       }
@@ -107,87 +110,87 @@ public class XovisCameraService : ICameraService
       Data = new List<Camera>()
     };
 
-      // create tasks
-      var tasks = new List<Task<Camera>>();
+    // create tasks
+    var tasks = new List<Task<Camera>>();
 
-      try
+    try
+    {
+      // // Create HttpClient
+      // using var httpClient = new HttpClient();
+      // // Configure Headers
+      // httpClient.DefaultRequestHeaders.Authorization =
+      //   new System.Net.Http.Headers.AuthenticationHeaderValue(
+      //     "Basic",
+      //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
+      //   );
+
+      foreach (var cameraIp in listOfIps)
       {
-        // // Create HttpClient
-        // using var httpClient = new HttpClient();
-        // // Configure Headers
-        // httpClient.DefaultRequestHeaders.Authorization =
-        //   new System.Net.Http.Headers.AuthenticationHeaderValue(
-        //     "Basic",
-        //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
-        //   );
+        var zones = new List<Zone>();
 
-        foreach (var cameraIp in listOfIps)
+        async Task<Camera> Func()
         {
-          var zones = new List<Zone>();
+          var httpResponse = await _httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
+            HttpCompletionOption.ResponseContentRead);
 
-          async Task<Camera> Func()
+          httpResponse.EnsureSuccessStatusCode();
+
+          var responseBody = await httpResponse.Content.ReadAsStringAsync();
+
+          // Response Empty
+          if (responseBody == null) throw new EmptyResponseBodyException();
+
+          var res = JsonConvert.DeserializeObject<Root>(responseBody);
+          if ((res.status.code == "OK") && (res.content.element.Count > 0))
           {
-            var httpResponse = await _httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
-              HttpCompletionOption.ResponseContentRead);
+            var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
 
-            httpResponse.EnsureSuccessStatusCode();
-
-            var responseBody = await httpResponse.Content.ReadAsStringAsync();
-            
-            // Response Empty
-            if (responseBody == null) throw new EmptyResponseBodyException();
-            
-            var res = JsonConvert.DeserializeObject<Root>(responseBody);
-            if ((res.status.code == "OK") && (res.content.element.Count > 0))
+            // For each of the zones present on the camera
+            foreach (var zone in cameraZones)
             {
-              var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
-
-              // For each of the zones present on the camera
-              foreach (var zone in cameraZones)
-              {
-                var zoneName = zone.elementname;
-                var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
-                zones.Add(new Zone(cameraIp, zoneName, zonePersonCount.value));
-              }
-
+              var zoneName = zone.elementname;
+              var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
+              zones.Add(new Zone(cameraIp, zoneName, zonePersonCount.value));
             }
-            return new Camera($"Camera_{cameraIp[^2..]}", cameraIp, zones);
-          }
 
-          tasks.Add(Func());
+          }
+          return new Camera($"Camera_{cameraIp[^2..]}", cameraIp, zones);
         }
 
-        await Task.WhenAll(tasks);
+        tasks.Add(Func());
+      }
 
-        foreach (var t in tasks)
+      await Task.WhenAll(tasks);
+
+      foreach (var t in tasks)
+      {
+        await t;
+        if (t.IsCompletedSuccessfully)
         {
-          await t;
-          if (t.IsCompletedSuccessfully)
-          {
-            response.Data.Add(t.Result);
-          }
-          else
-          {
-            response.Success = false;
-            response.Message = $"Unable to fetch camera information for {t.Result.Ip}";
-          }
+          response.Data.Add(t.Result);
+        }
+        else
+        {
+          response.Success = false;
+          response.Message = $"Unable to fetch camera information for {t.Result.Ip}";
         }
       }
-      catch (HttpRequestException e)
-      {
-        Console.WriteLine("Unable to connect to Xovis Cameras");
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.Message);
-      }
+    }
+    catch (HttpRequestException e)
+    {
+      Console.WriteLine("Unable to connect to Xovis Cameras");
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+    }
 
-      Cameras = response.Data;
+    Cameras = response.Data;
 
-      Console.WriteLine($"Cameras: {response.Data.Count}");
-      Console.WriteLine($"Zones: {response.Data.SelectMany(c => c.Zones).Count()}");
+    Console.WriteLine($"Cameras: {response.Data.Count}");
+    Console.WriteLine($"Zones: {response.Data.SelectMany(c => c.Zones).Count()}");
 
-      return response;
+    return response;
 
   }
   public async Task<ServiceResponse<List<CameraImageData>>> GetStereoImage()
@@ -219,7 +222,7 @@ public class XovisCameraService : ICameraService
             var watcher = Stopwatch.StartNew();
             var res = await _httpClient.GetAsync($"{camera.Ip}/api/scene/stereo");
             watcher.Stop();
-            cameraData.timestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds/2));
+            cameraData.timestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
             var bytes = await res.Content.ReadAsByteArrayAsync();
             cameraData.imageData = bytes;
 
@@ -284,7 +287,7 @@ public class XovisCameraService : ICameraService
             var watcher = Stopwatch.StartNew();
             var res = await _httpClient.GetAsync($"{camera.Ip}/api/validation");
             watcher.Stop();
-            cameraData.timestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds/2));
+            cameraData.timestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
             var bytes = await res.Content.ReadAsByteArrayAsync();
             cameraData.imageData = bytes;
             return cameraData;
@@ -377,7 +380,7 @@ public class XovisCameraService : ICameraService
                 personCountDTO.CalculatedTimeStamp = calculatedTimestamp;
 
                 var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
-                
+
                 // For each of the zones present on the camera
                 foreach (var zone in cameraZones)
                 {
@@ -386,7 +389,7 @@ public class XovisCameraService : ICameraService
                   listOfPersonCounts.Add(new ZonePersonCountDTO()
                   {
                     CalculatedTimeStamp = calculatedTimestamp,
-                    ZoneReference = new Zone(camera.Ip,zoneName,zonePersonCount.value),
+                    ZoneReference = new Zone(camera.Ip, zoneName, zonePersonCount.value),
                     XovisTimeStamp = zone.livedata.time
                   });
                 }
@@ -424,5 +427,5 @@ public class XovisCameraService : ICameraService
     }
     return response;
   }
-    
+
 }
