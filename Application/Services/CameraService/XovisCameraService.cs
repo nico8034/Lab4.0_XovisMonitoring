@@ -13,15 +13,16 @@ public class XovisCameraService : ICameraService
   private readonly HttpClient _httpClient;
   private readonly CameraInfoProvider _cameraInfoProvider;
 
+  // private List<Camera>? Cameras { get; set; }
+
   public XovisCameraService(HttpClient httpClient, CameraInfoProvider cameraInfoProvider)
   {
     _httpClient = httpClient;
     _cameraInfoProvider = cameraInfoProvider;
-    Cameras = _cameraInfoProvider.Cameras;
+    // Cameras = _cameraInfoProvider.Cameras;
     // Task.Run(() => RegisterCameras()).Wait();
   }
 
-  private List<Camera>? Cameras { get; set; }
   // private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
 
   private string filePath
@@ -99,7 +100,7 @@ public class XovisCameraService : ICameraService
   }
   public List<Camera> GetCameras()
   {
-    return Cameras;
+    return _cameraInfoProvider.Cameras;
   }
   public async Task<ServiceResponse<List<Camera>>> RegisterCameras()
   {
@@ -185,10 +186,9 @@ public class XovisCameraService : ICameraService
       Console.WriteLine(ex.Message);
     }
 
-    Cameras = response.Data;
-
-    Console.WriteLine($"Cameras: {response.Data.Count}");
-    Console.WriteLine($"Zones: {response.Data.SelectMany(c => c.Zones).Count()}");
+    // Cameras = response.Data;
+    // Console.WriteLine($"Cameras: {response.Data.Count}");
+    // Console.WriteLine($"Zones: {response.Data.SelectMany(c => c.Zones).Count()}");
 
     return response;
 
@@ -209,8 +209,8 @@ public class XovisCameraService : ICameraService
       //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
       //   );
 
-      if (Cameras != null)
-        foreach (var camera in Cameras)
+      if (_cameraInfoProvider.Cameras != null)
+        foreach (var camera in _cameraInfoProvider.Cameras)
         {
           async Task<CameraImageData> Func()
           {
@@ -274,8 +274,8 @@ public class XovisCameraService : ICameraService
       //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
       //   );
 
-      if (Cameras != null)
-        foreach (var camera in Cameras)
+      if (_cameraInfoProvider.Cameras != null)
+        foreach (var camera in _cameraInfoProvider.Cameras)
         {
           async Task<CameraImageData> Func()
           {
@@ -342,11 +342,10 @@ public class XovisCameraService : ICameraService
       //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
       //   );
       // If any cameras registered
-      if (Cameras != null)
+      if (_cameraInfoProvider.Cameras != null)
       {
-        foreach (var camera in Cameras)
+        foreach (var camera in _cameraInfoProvider.Cameras)
         {
-          // 
           async Task<List<ZonePersonCountDTO>> Func()
           {
             var listOfPersonCounts = new List<ZonePersonCountDTO>();
