@@ -19,8 +19,6 @@ public class XovisCameraService : ICameraService
   {
     _httpClient = httpClient;
     _cameraInfoProvider = cameraInfoProvider;
-    // Cameras = _cameraInfoProvider.Cameras;
-    // Task.Run(() => RegisterCameras()).Wait();
   }
 
   // private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
@@ -116,14 +114,14 @@ public class XovisCameraService : ICameraService
 
     try
     {
-      // // Create HttpClient
-      // using var httpClient = new HttpClient();
-      // // Configure Headers
-      // httpClient.DefaultRequestHeaders.Authorization =
-      //   new System.Net.Http.Headers.AuthenticationHeaderValue(
-      //     "Basic",
-      //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
-      //   );
+      // Create HttpClient
+      using var httpClient = new HttpClient();
+      // Configure Headers
+      httpClient.DefaultRequestHeaders.Authorization =
+        new System.Net.Http.Headers.AuthenticationHeaderValue(
+          "Basic",
+          Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
+        );
 
       foreach (var cameraIp in listOfIps)
       {
@@ -131,7 +129,7 @@ public class XovisCameraService : ICameraService
 
         async Task<Camera> Func()
         {
-          var httpResponse = await _httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
+          var httpResponse = await httpClient.GetAsync($"{cameraIp}/api/data/live?format=json",
             HttpCompletionOption.ResponseContentRead);
 
           httpResponse.EnsureSuccessStatusCode();

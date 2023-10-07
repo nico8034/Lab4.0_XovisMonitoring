@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Application.Services.CameraService;
-using Application.Services.ExperimentService;
 using Domain.Entities;
 
 namespace Application.Services.MonitoringService;
@@ -89,13 +88,13 @@ public class MonitoringService : IMonitoringService
     // Create log file if it doesnt exist
     if (!File.Exists($"{experimentDataLocatiton}/personCountLog.txt"))
     {
-      await File.WriteAllTextAsync($"{experimentDataLocatiton}/personCountLog.txt", "Date, Time logged, Updated, Zone, Person Count");
+      await File.WriteAllTextAsync($"{experimentDataLocatiton}/personCountLog.txt", "Date,Time logged,Updated,Zone,Person Count\n");
     }
     // Write to file if it exists
     else
     {
       await using var sw = new StreamWriter($"{experimentDataLocatiton}/personCountLog.txt", true);
-      await sw.WriteLineAsync($"{zone.CalculatedTimeStamp:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{zone.CalculatedTimeStamp:HH:mm:ss.fff}, {zone.ZoneReference.ZoneName}, {zone.ZoneReference.PersonCount}");
+      await sw.WriteLineAsync($"{zone.CalculatedTimeStamp:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{zone.CalculatedTimeStamp:HH:mm:ss.fff},{zone.ZoneReference.ZoneName},{zone.ZoneReference.PersonCount}");
     }
   }
 
@@ -104,7 +103,7 @@ public class MonitoringService : IMonitoringService
     var stopwatch = new Stopwatch();
     while (isActive)
     {
-      // Thread.Sleep(pullInterval);
+      Thread.Sleep(400);
       stopwatch.Start();
       var result = await _xovisService.GetPersonCountInView();
       stopwatch.Stop();
