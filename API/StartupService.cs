@@ -63,19 +63,20 @@ public class StartupService : IHostedService
     {
       Console.WriteLine($"Camera: {zone.CameraIp}");
       Console.WriteLine($"Zone: {zone.ZoneName}");
-      Console.WriteLine("Coordinates:");
-      foreach (var point in zone.Points)
-      {
-        System.Console.WriteLine($"Corner: {point.Corner}");
-        System.Console.WriteLine($"X: {point.X}");
-        System.Console.WriteLine($"Y: {point.Y}");
-      }
+      // Console.WriteLine("Coordinates:");
+      // foreach (var point in zone.Points)
+      // {
+      //   System.Console.WriteLine($"Corner: {point.Corner}");
+      //   System.Console.WriteLine($"X: {point.X}");
+      //   System.Console.WriteLine($"Y: {point.Y}");
+      // }
     }
 
     _monitoringService.GetRoom().AddZone(predefinedZones);
 
     Console.WriteLine($"Camera count: {_cameraInfoProvider.Cameras.Count}");
-    Console.WriteLine($"Zone count: {_monitoringService.GetRoom().GetZones().Count}");
+    Console.WriteLine($"Camera Zone count: {_cameraInfoProvider.Cameras.Sum(o => o.Zones.Count)}");
+    Console.WriteLine($"Model Zone count: {_monitoringService.GetRoom().GetZones().Count}");
   }
 
   public async Task StopAsync(CancellationToken cancellationToken)

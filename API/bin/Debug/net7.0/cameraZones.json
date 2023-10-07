@@ -1,55 +1,1837 @@
 [
   {
     "CameraIp": "http://10.179.0.167",
-    "ZoneName": "Zone 5",
+    "ZoneName": "Zone_14-07",
     "PersonCount": 0,
     "points": [
       {
         "corner": "topLeft",
-        "x": 4.2,
-        "y": 6.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "topRight",
-        "x": 8.2,
-        "y": 6.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "BottomLeft",
-        "x": 4.2,
-        "y": 4.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "BottomRight",
-        "x": 8.2,
-        "y": 4.5
+        "x": 0,
+        "y": 0
       }
     ]
   },
   {
     "CameraIp": "http://10.179.0.167",
-    "ZoneName": "Zone 6",
+    "ZoneName": "Zone_14-06",
     "PersonCount": 0,
     "points": [
       {
         "corner": "topLeft",
-        "x": 4.2,
-        "y": 6.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "topRight",
-        "x": 8.2,
-        "y": 6.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "BottomLeft",
-        "x": 4.2,
-        "y": 4.5
+        "x": 0,
+        "y": 0
       },
       {
         "corner": "BottomRight",
-        "x": 8.2,
-        "y": 4.5
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone_14-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone_14-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone_14-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone_14-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.167",
+    "ZoneName": "Zone_14-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-06",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.168",
+    "ZoneName": "Zone_13-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.160",
+    "ZoneName": "Zone_12-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.160",
+    "ZoneName": "Zone_12-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.160",
+    "ZoneName": "Zone_12-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.160",
+    "ZoneName": "Zone_12-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.160",
+    "ZoneName": "Zone_12-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-07",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-06",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.159",
+    "ZoneName": "Zone_10-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+  "CameraIp": "http://10.179.0.159",
+  "ZoneName": "Zone_10-01",
+  "PersonCount": 0,
+  "points": [
+    {
+      "corner": "topLeft",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "corner": "topRight",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "corner": "BottomLeft",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "corner": "BottomRight",
+      "x": 0,
+      "y": 0
+    }
+  ]
+},
+  {
+    "CameraIp": "http://10.179.0.45",
+    "ZoneName": "Zone_09-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.45",
+    "ZoneName": "Zone_09-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.45",
+    "ZoneName": "Zone_09-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.45",
+    "ZoneName": "Zone_09-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.166",
+    "ZoneName": "Zone_08-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.166",
+    "ZoneName": "Zone_08-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.34",
+    "ZoneName": "Zone_07-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.34",
+    "ZoneName": "Zone_07-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.34",
+    "ZoneName": "Zone_07-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.34",
+    "ZoneName": "Zone_07-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.21",
+    "ZoneName": "Zone_06-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.21",
+    "ZoneName": "Zone_06-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.21",
+    "ZoneName": "Zone_06-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.21",
+    "ZoneName": "Zone_06-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.21",
+    "ZoneName": "Zone_06-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-06",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.43",
+    "ZoneName": "Zone_05-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-06",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.28",
+    "ZoneName": "Zone_04-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.20",
+    "ZoneName": "Zone_03-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.20",
+    "ZoneName": "Zone_03-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.20",
+    "ZoneName": "Zone_03-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.12",
+    "ZoneName": "Zone_02-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.12",
+    "ZoneName": "Zone_02-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.12",
+    "ZoneName": "Zone_02-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.12",
+    "ZoneName": "Zone_02-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.12",
+    "ZoneName": "Zone_02-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-08",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-07",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-06",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-05",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-04",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-03",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-02",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "CameraIp": "http://10.179.0.158",
+    "ZoneName": "Zone_01-01",
+    "PersonCount": 0,
+    "points": [
+      {
+        "corner": "topLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "topRight",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomLeft",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "corner": "BottomRight",
+        "x": 0,
+        "y": 0
       }
     ]
   }

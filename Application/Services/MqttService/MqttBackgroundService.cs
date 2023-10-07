@@ -47,8 +47,9 @@ public class MqttBackgroundService : IMqttService
         
         return new MqttClientOptionsBuilder()
             .WithClientId("XovisZones")
-            .WithTcpServer("localhost", port: 1883)
+            // .WithTcpServer("localhost", port: 1883)
             // .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
+            .WithTcpServer("192.168.43.25", port: 1883)
             .WithCleanSession()
             // .WithCredentials("semantic","s3mant1c")
             .Build();
@@ -62,25 +63,29 @@ public class MqttBackgroundService : IMqttService
     {
         var options = SetupMqttService();
         
-        try
-        {  
-            // Establish Connection
-            var connectionResult = await mqttClient.ConnectAsync(options);
+        //TODO Test getting exception
+        await mqttClient.ConnectAsync(options, CancellationToken.None);
 
-            if (connectionResult.ResultCode == MqttClientConnectResultCode.Success)
-            {
-                Console.WriteLine("Connected to MQTT broker successfully.");
-            }
-            else
-            {
-                Console.WriteLine($"Failed to connect to MQTT broker: {connectionResult.ResultCode}");
-            }
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+        // try
+        // {  
+        //     // Establish Connection
+        //     var connectionResult = await mqttClient.ConnectAsync(options);
+        //
+        //     if (connectionResult.ResultCode == MqttClientConnectResultCode.Success)
+        //     {
+        //         Console.WriteLine("Connected to MQTT broker successfully.");
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine($"Failed to connect to MQTT broker: {connectionResult.ResultCode}");
+        //     }
+        //
+        // }
+        // catch (Exception e)
+        // {
+        //     Console.WriteLine(e.Message);
+        //     throw;
+        // }
     }
 
     public bool isConnected()
