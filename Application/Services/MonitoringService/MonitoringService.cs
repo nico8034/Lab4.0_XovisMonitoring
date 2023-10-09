@@ -94,7 +94,7 @@ public class MonitoringService : IMonitoringService
     else
     {
       await using var sw = new StreamWriter($"{experimentDataLocatiton}/personCountLog.txt", true);
-      await sw.WriteLineAsync($"{zone.CalculatedTimeStamp:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{zone.CalculatedTimeStamp:HH:mm:ss.fff},{zone.ZoneReference.ZoneName},{zone.ZoneReference.PersonCount}");
+      await sw.WriteLineAsync($"{zone.CalculatedTimeStamp:yyyy-MM-dd},{DateTime.Now:HH:mm:ss.fff},{zone.CalculatedTimeStamp:HH:mm:ss.fff},{zone.ZoneReference.zone_name},{zone.ZoneReference.personCount}");
     }
   }
 
@@ -103,7 +103,7 @@ public class MonitoringService : IMonitoringService
     var stopwatch = new Stopwatch();
     while (isActive)
     {
-      Thread.Sleep(400);
+      Thread.Sleep(100);
       stopwatch.Start();
       var result = await _xovisService.GetPersonCountInView();
       stopwatch.Stop();
@@ -120,11 +120,11 @@ public class MonitoringService : IMonitoringService
         foreach (var zone in room.GetZones())
         {
           // If cameraIP and ZoneName is a match
-          if (zone.Value.ZoneName.Equals(zonePersonCountDto.ZoneReference.ZoneName) && (zone.Value.CameraIp.Equals(zonePersonCountDto.ZoneReference.CameraIp)))
+          if (zone.Value.zone_name.Equals(zonePersonCountDto.ZoneReference.zone_name) && (zone.Value.cameraIp.Equals(zonePersonCountDto.ZoneReference.cameraIp)))
           {
             // Update the personCount for the specific zone in the room model
-            zone.Value.PersonCount = zonePersonCountDto.ZoneReference.PersonCount;
-            zone.Value.LastUpdate = zonePersonCountDto.CalculatedTimeStamp;
+            zone.Value.personCount = zonePersonCountDto.ZoneReference.personCount;
+            zone.Value.timeStamp = zonePersonCountDto.CalculatedTimeStamp;
           }
         }
         if (shouldLog) await WriteLog(zonePersonCountDto);

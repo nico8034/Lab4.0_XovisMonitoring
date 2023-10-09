@@ -49,7 +49,7 @@ public class MqttBackgroundService : IMqttService
             .WithClientId("XovisZones")
             // .WithTcpServer("localhost", port: 1883)
             // .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
-            .WithTcpServer("192.168.43.25", port: 1883)
+            .WithTcpServer("10.126.128.90", port: 1883)
             .WithCleanSession()
             // .WithCredentials("semantic","s3mant1c")
             .Build();

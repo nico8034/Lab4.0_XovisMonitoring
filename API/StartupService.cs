@@ -40,13 +40,13 @@ public class StartupService : IHostedService
 
     //Setup / Start the room service
 
-    Console.WriteLine("Zones taken from the cameras");
+    Console.WriteLine("Camera Zones:");
     foreach (var camera in _cameraInfoProvider.Cameras)
     {
       Console.WriteLine($@"camera Ip: {camera.Ip}");
       foreach (var zone in camera.Zones)
       {
-        Console.WriteLine($@"camera zone: {zone.ZoneName}");
+        Console.WriteLine($@"camera zone: {zone.zone_name}");
         // cameraZones.Add(new Zone(camera.Ip,zone.ZoneName));
       }
     }
@@ -54,15 +54,15 @@ public class StartupService : IHostedService
     var jsonZones = await File.ReadAllTextAsync(zonesJsonPath);
     var predefinedZones = JsonConvert.DeserializeObject<List<Zone>>(jsonZones);
 
-    Console.WriteLine("Zones loaded from the predefined zones.json");
+    Console.WriteLine("Zones from zones.json");
 
     // If no zones
     if (predefinedZones == null) return;
 
     foreach (var zone in predefinedZones)
     {
-      Console.WriteLine($"Camera: {zone.CameraIp}");
-      Console.WriteLine($"Zone: {zone.ZoneName}");
+      Console.WriteLine($"Zone_name: {zone.zone_name}");
+      Console.WriteLine($"Zone_index: {zone.zone_index}");
       // Console.WriteLine("Coordinates:");
       // foreach (var point in zone.Points)
       // {

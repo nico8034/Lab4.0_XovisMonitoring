@@ -4,31 +4,33 @@ namespace Domain.Entities;
 
 public class Zone
 {
-    public string CameraIp { get; set; }
-    public string ZoneName { get; set; }
-    public int PersonCount { get; set; } = 0;
-    public List<Point> Points { get; set; } = new List<Point>();
-    public DateTime LastUpdate { get; set; } = DateTime.Now;
+    public string cameraIp { get; set; }
+    public string zone_name { get; set; }
+    public int zone_index { get; set; }
+    public int personCount { get; set; } = 0;
+    public List<Point> points { get; set; } = new List<Point>();
+    public DateTime timeStamp { get; set; } = DateTime.Now;
     
     public Zone(string cameraIp, string zoneName)
     {
-        CameraIp = cameraIp;
-        ZoneName = zoneName;
+        this.cameraIp = cameraIp;
+        zone_name = zoneName;
     }
     
     public Zone(string cameraIp, string zoneName, int personCount)
     {
-        CameraIp = cameraIp;
-        ZoneName = zoneName;
-        PersonCount = personCount;
+        this.cameraIp = cameraIp;
+        zone_name = zoneName;
+        this.personCount = personCount;
     }
     
     [JsonConstructor]
-    public Zone(string cameraIp, string zoneName, int personCount,List<Point> points)
+    public Zone(string cameraIp, string zoneName, int personCount,List<Point> points,int zoneIndex)
     {
-        CameraIp = cameraIp;
-        ZoneName = zoneName;
-        PersonCount = personCount;
-        Points = points;
+        this.cameraIp = cameraIp;
+        this.zone_name = zoneName;
+        this.personCount = personCount;
+        this.points = points;
+        this.zone_index = zoneIndex;
     }
 }
