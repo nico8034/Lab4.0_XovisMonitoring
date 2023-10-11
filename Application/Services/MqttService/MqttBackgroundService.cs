@@ -11,8 +11,8 @@ namespace Application.Services.MqttService;
 /// </summary>
 public class MqttBackgroundService : IMqttService
 {
-    private volatile bool isRunning = false;
-    private IMqttClient mqttClient;
+    private volatile bool _isRunning = false;
+    private IMqttClient? _mqttClient;
     private readonly IMonitoringService _monitoringService;
 
     public MqttBackgroundService(IMonitoringService monitoringService)
@@ -22,12 +22,12 @@ public class MqttBackgroundService : IMqttService
 
     public bool IsActive()
     {
-        return isRunning;
+        return _isRunning;
     }
 
     public IMqttClient GetMqttClient()
     {
-        return mqttClient;
+        return _mqttClient;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class MqttBackgroundService : IMqttService
     {
         // Logic for setting up MQTT
         var factory = new MqttFactory();
-        mqttClient = factory.CreateMqttClient();
+        _mqttClient = factory.CreateMqttClient();
     
         // Targets:
         // digitechi4.tek.sdu.dk:1883
@@ -46,13 +46,14 @@ public class MqttBackgroundService : IMqttService
         
         
         return new MqttClientOptionsBuilder()
-            .WithClientId("XovisZones")
-            // .WithTcpServer("localhost", port: 1883)
-            // .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
-            .WithTcpServer("10.126.128.90", port: 1883)
+            .WithClientId("XovisData")
+            .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
+            .WithCredentials("semantic","s3mant1c")
             .WithCleanSession()
-            // .WithCredentials("semantic","s3mant1c")
             .Build();
+            
+            // .WithTcpServer("localhost", port: 1883)
+            // .WithTcpServer("192.168.43.25", port: 1883)
        
         //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
         //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Desktop\git\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
@@ -64,7 +65,7 @@ public class MqttBackgroundService : IMqttService
         var options = SetupMqttService();
         
         //TODO Test getting exception
-        await mqttClient.ConnectAsync(options, CancellationToken.None);
+        await _mqttClient.ConnectAsync(options, CancellationToken.None);
 
         // try
         // {  
@@ -90,28 +91,28 @@ public class MqttBackgroundService : IMqttService
 
     public bool isConnected()
     {
-        return mqttClient.IsConnected;
+        return _mqttClient.IsConnected;
     }
 
     public void StartPublishing()
     {
-        isRunning = true;
+        _isRunning = true;
         Task.Run(Publishing);
     }
 
     public async Task StopPublishing()
     {
-        isRunning = false;
+        _isRunning = false;
         await DisconnectFromBroker();
     }
     
     private async Task DisconnectFromBroker()
     {
-        if (mqttClient != null && mqttClient.IsConnected)
+        if (_mqttClient != null && _mqttClient.IsConnected)
         {
             try
             {
-                await mqttClient.DisconnectAsync();
+                await _mqttClient.DisconnectAsync();
             }
             catch(Exception ex)
             {
@@ -131,7 +132,7 @@ public class MqttBackgroundService : IMqttService
                 .WithRetainFlag()
                 .Build();
 
-            await mqttClient.PublishAsync(mqttMessage);
+            await _mqttClient.PublishAsync(mqttMessage);
         }
         catch(Exception ex)
         {
@@ -142,7 +143,7 @@ public class MqttBackgroundService : IMqttService
 
     private async Task Publishing()
     {
-        while (isRunning)
+        while (_isRunning)
         {
             try
             {
