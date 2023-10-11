@@ -18,7 +18,6 @@ namespace Application.Services.Logging
       var directory = Path.Combine(Environment.CurrentDirectory, "Experiments", ExperimentName);
       var finalPath = Path.Combine(directory, $"{FileName}.txt");
 
-      System.Console.WriteLine(directory);
       // Create directory
       if (!Directory.Exists(directory))
         Directory.CreateDirectory(directory);
