@@ -3,6 +3,7 @@ using Application.Services.cameraInfo;
 using Application.Services.CameraService;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
+using Application.Services.Logging;
 using Application.Services.MonitoringService;
 using Application.Services.MqttService;
 using FluentValidation;
@@ -37,6 +38,7 @@ public static class ApplicationServiceRegistration
     services.AddSingleton<IImageProcessingService, ImageProcessingService>();
     services.AddSingleton<IMqttService, MqttBackgroundService>();
     services.AddSingleton<CameraInfoProvider>();
+    services.AddSingleton<ILogger, Logger>();
 
     return services;
   }
