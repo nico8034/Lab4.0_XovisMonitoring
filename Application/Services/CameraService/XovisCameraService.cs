@@ -2,6 +2,7 @@ using System.Diagnostics;
 using API.Exceptions;
 using Application.Common;
 using Application.Services.cameraInfo;
+using Application.Services.Logging;
 using Domain.Entities;
 using Domain.Entities.JSON;
 using Newtonsoft.Json;
@@ -12,16 +13,14 @@ public class XovisCameraService : ICameraService
 {
   private readonly HttpClient _httpClient;
   private readonly CameraInfoProvider _cameraInfoProvider;
+  private readonly ILogger _logger;
 
-  // private List<Camera>? Cameras { get; set; }
-
-  public XovisCameraService(HttpClient httpClient, CameraInfoProvider cameraInfoProvider)
+  public XovisCameraService(HttpClient httpClient, CameraInfoProvider cameraInfoProvider, ILogger logger)
   {
     _httpClient = httpClient;
     _cameraInfoProvider = cameraInfoProvider;
+    _logger = logger;
   }
-
-  // private string filePath { get; } = Path.Combine(Environment.CurrentDirectory,@"..\Application/Services/CameraService/cameras.txt");
 
   private string filePath
   {
@@ -183,11 +182,6 @@ public class XovisCameraService : ICameraService
     {
       Console.WriteLine(ex.Message);
     }
-
-    // Cameras = response.Data;
-    // Console.WriteLine($"Cameras: {response.Data.Count}");
-    // Console.WriteLine($"Zones: {response.Data.SelectMany(c => c.Zones).Count()}");
-
     return response;
 
   }
@@ -200,13 +194,6 @@ public class XovisCameraService : ICameraService
 
     try
     {
-      // using var httpClient = new HttpClient();
-      // httpClient.DefaultRequestHeaders.Authorization =
-      //   new System.Net.Http.Headers.AuthenticationHeaderValue(
-      //     "Basic",
-      //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
-      //   );
-
       if (_cameraInfoProvider.Cameras != null)
         foreach (var camera in _cameraInfoProvider.Cameras)
         {
@@ -265,13 +252,6 @@ public class XovisCameraService : ICameraService
 
     try
     {
-      // using var httpClient = new HttpClient();
-      // httpClient.DefaultRequestHeaders.Authorization =
-      //   new System.Net.Http.Headers.AuthenticationHeaderValue(
-      //     "Basic",
-      //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
-      //   );
-
       if (_cameraInfoProvider.Cameras != null)
         foreach (var camera in _cameraInfoProvider.Cameras)
         {
@@ -329,24 +309,17 @@ public class XovisCameraService : ICameraService
     // create tasks
     var tasks = new List<Task<List<ZonePersonCountDTO>>>();
 
-    try
+    if (_cameraInfoProvider.Cameras != null)
     {
-      // // Create HttpClient
-      // using var httpClient = new HttpClient();
-      // // Configure Headers
-      // httpClient.DefaultRequestHeaders.Authorization =
-      //   new System.Net.Http.Headers.AuthenticationHeaderValue(
-      //     "Basic",
-      //     Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes($"admin:pass"))
-      //   );
-      // If any cameras registered
-      if (_cameraInfoProvider.Cameras != null)
+      foreach (var camera in _cameraInfoProvider.Cameras)
       {
-        foreach (var camera in _cameraInfoProvider.Cameras)
+        async Task<List<ZonePersonCountDTO>> Func()
         {
-          async Task<List<ZonePersonCountDTO>> Func()
+          var listOfPersonCounts = new List<ZonePersonCountDTO>();
+
+          // Wrap execution of each individuel request in a try/catch
+          try
           {
-            var listOfPersonCounts = new List<ZonePersonCountDTO>();
             var personCountDTO = new ZonePersonCountDTO
             {
               CameraReference = camera
@@ -354,7 +327,6 @@ public class XovisCameraService : ICameraService
 
             // Time the call
             var watcher = Stopwatch.StartNew();
-            // 
             var httpResponse = await _httpClient.GetAsync($"{camera.Ip}/api/data/live?format=json",
               HttpCompletionOption.ResponseContentRead);
             watcher.Stop();
@@ -365,15 +337,10 @@ public class XovisCameraService : ICameraService
             if (responseBody != null)
             {
               var res = JsonConvert.DeserializeObject<Root>(responseBody);
-              if ((res.status.code == "OK") && (res.content.element.Count > 0))
+              if ((res!.status.code == "OK") && (res.content.element.Count > 0))
               {
-                // cameraData.timestamp = obj.sensortime.time;
-
-                // subtract half of the time it took to get the response to improve accuracy of timestamp
-                // for when data was collected
                 var calculatedTimestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
 
-                // cameraData.XovisTimeStamp = res.content.
                 personCountDTO.CalculatedTimeStamp = calculatedTimestamp;
 
                 var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
@@ -386,41 +353,38 @@ public class XovisCameraService : ICameraService
                   listOfPersonCounts.Add(new ZonePersonCountDTO()
                   {
                     CalculatedTimeStamp = calculatedTimestamp,
-                    ZoneReference = new Zone(camera.Ip, zoneName, zonePersonCount.value),
+                    ZoneReference = new Zone(camera.Ip, zoneName, zonePersonCount!.value),
                     XovisTimeStamp = zone.livedata.time
                   });
                 }
               }
             }
-
-            return listOfPersonCounts;
+          }
+          catch (Exception ex)
+          {
+            System.Console.WriteLine(ex.Message);
+            await _logger.WriteErrorLog($"{camera.Ip}" + ex.Message, $"{camera.Zones![0].zone_name[..7]}", "personCountErrorLog", DateTime.Now);
           }
 
-          tasks.Add(Func());
+          return listOfPersonCounts;
         }
 
-        await Task.WhenAll(tasks);
-
-        foreach (var t in tasks)
+        tasks.Add(Func());
+      }
+      try
+      {
+        var results = await Task.WhenAll(tasks);
+        foreach (var result in results)
         {
-          await t;
-          if (t.IsCompletedSuccessfully)
-          {
-            response.Data.AddRange(t.Result);
-          }
-          else
-          {
-            response.Success = false;
-            response.Message =
-              $"Unable to fetch person count";
-          }
-
+          response.Data.AddRange(result);
         }
       }
-    }
-    catch (Exception ex)
-    {
-      Console.WriteLine(ex.Message);
+      catch (Exception ex)
+      {
+        response.Success = false;
+        response.Message = $"An unexpected error occurred: {ex.Message}";
+        await _logger.WriteErrorLog(ex.Message, "", "unexpectedErrorLog", DateTime.Now);
+      }
     }
     return response;
   }

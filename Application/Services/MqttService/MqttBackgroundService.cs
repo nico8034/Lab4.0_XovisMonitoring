@@ -146,17 +146,17 @@ public class MqttBackgroundService : IMqttService
     {
       try
       {
-        var trimmedObjects = new List<Dictionary<string, string>>();
+        var trimmedObjects = new List<Dictionary<string, object>>();
 
         foreach (var zone in _monitoringService.GetRoom().GetZones())
         {
-          var newObj = new Dictionary<string, string>
+          var newObj = new Dictionary<string, object>
             {
                 {"@type", "XovisData"},
                 {"timeStamp", $"{zone.Value.timeStamp:yyyy:MM:dd} {zone.Value.timeStamp:HH:mm:ss.fff}"},
-                {"zone_index", $"{zone.Value.zone_index}"},
+                {"zone_index", zone.Value.zone_index},
                 {"zone_name", $"{zone.Value.zone_name}"},
-                {"personCount", $"{zone.Value.personCount}"}
+                {"personCount", zone.Value.personCount}
             };
           trimmedObjects.Add(newObj);
         }

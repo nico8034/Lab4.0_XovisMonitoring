@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Application.Services.CameraService;
+using Application.Services.Logging;
 using Domain.Entities;
 
 namespace Application.Services.MonitoringService;
@@ -8,14 +9,17 @@ public class MonitoringService : IMonitoringService
 {
   public bool isActive { get; set; } = false;
   public Room room { get; set; }
-  public int pullInterval { get; set; } = 20;
+  public int pullInterval { get; set; } = 100;
   public bool shouldLog { get; set; } = false;
   public string ExperimentName { get; set; } = string.Empty;
 
-  private ICameraService _xovisService;
-  public MonitoringService(ICameraService xovisService)
+  private readonly ICameraService _xovisService;
+  private readonly ILogger _logger;
+
+  public MonitoringService(ICameraService xovisService, ILogger logger)
   {
     _xovisService = xovisService;
+    _logger = logger;
   }
 
   public void SetupRoom()
@@ -103,7 +107,7 @@ public class MonitoringService : IMonitoringService
     var stopwatch = new Stopwatch();
     while (isActive)
     {
-      Thread.Sleep(100);
+      Thread.Sleep(pullInterval);
       stopwatch.Start();
       var result = await _xovisService.GetPersonCountInView();
       stopwatch.Stop();
@@ -127,7 +131,7 @@ public class MonitoringService : IMonitoringService
             zone.Value.timeStamp = zonePersonCountDto.CalculatedTimeStamp;
           }
         }
-        if (shouldLog) await WriteLog(zonePersonCountDto);
+        if (shouldLog) await _logger.WriteSuccessLog(zonePersonCountDto, ExperimentName, "personCountLog");
       }
     }
   }
