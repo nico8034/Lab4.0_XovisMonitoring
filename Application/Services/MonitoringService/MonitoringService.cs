@@ -67,6 +67,7 @@ public class MonitoringService : IMonitoringService
   public void StopMonitoringRoom()
   {
     isActive = false;
+    _logger.DisposeAsync();
   }
 
   public void SetExperimentName(string experimentName)

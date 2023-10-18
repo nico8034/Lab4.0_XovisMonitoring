@@ -10,5 +10,6 @@ namespace Application.Services.Logging
   {
     Task WriteSuccessLog(ZonePersonCountDTO zone, string ExperimentName, string FileName);
     Task WriteErrorLog(string message, string zone, string fileName, DateTime timeStamp);
+    ValueTask DisposeAsync();
   }
 }

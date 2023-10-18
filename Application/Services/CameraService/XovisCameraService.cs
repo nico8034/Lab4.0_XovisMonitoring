@@ -299,11 +299,11 @@ public class XovisCameraService : ICameraService
     return response;
   }
 
-  public async Task<ServiceResponse<List<ZonePersonCountDTO>>> GetPersonCountInView()
-  {
+ public async Task<ServiceResponse<List<ZonePersonCountDTO>>> GetPersonCountInView()
+{
     var response = new ServiceResponse<List<ZonePersonCountDTO>>
     {
-      Data = new List<ZonePersonCountDTO>()
+        Data = new List<ZonePersonCountDTO>()
     };
 
     // create tasks
@@ -311,82 +311,85 @@ public class XovisCameraService : ICameraService
 
     if (_cameraInfoProvider.Cameras != null)
     {
-      foreach (var camera in _cameraInfoProvider.Cameras)
-      {
-        async Task<List<ZonePersonCountDTO>> Func()
+        foreach (var camera in _cameraInfoProvider.Cameras)
         {
-          var listOfPersonCounts = new List<ZonePersonCountDTO>();
-
-          // Wrap execution of each individuel request in a try/catch
-          try
-          {
-            var personCountDTO = new ZonePersonCountDTO
+            async Task<List<ZonePersonCountDTO>> Func()
             {
-              CameraReference = camera
-            };
+                var listOfPersonCounts = new List<ZonePersonCountDTO>();
 
-            // Time the call
-            var watcher = Stopwatch.StartNew();
-            var httpResponse = await _httpClient.GetAsync($"{camera.Ip}/api/data/live?format=json",
-              HttpCompletionOption.ResponseContentRead);
-            watcher.Stop();
-            httpResponse.EnsureSuccessStatusCode();
-
-            var responseBody = await httpResponse.Content.ReadAsStringAsync();
-
-            if (responseBody != null)
-            {
-              var res = JsonConvert.DeserializeObject<Root>(responseBody);
-              if ((res!.status.code == "OK") && (res.content.element.Count > 0))
-              {
-                var calculatedTimestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
-
-                personCountDTO.CalculatedTimeStamp = calculatedTimestamp;
-
-                var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
-
-                // For each of the zones present on the camera
-                foreach (var zone in cameraZones)
+                // Wrap execution of each individuel request in a try/catch
+                try
                 {
-                  var zoneName = zone.elementname;
-                  var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
-                  listOfPersonCounts.Add(new ZonePersonCountDTO()
-                  {
-                    CalculatedTimeStamp = calculatedTimestamp,
-                    ZoneReference = new Zone(camera.Ip, zoneName, zonePersonCount!.value),
-                    XovisTimeStamp = zone.livedata.time
-                  });
+                    var personCountDTO = new ZonePersonCountDTO
+                    {
+                        CameraReference = camera
+                    };
+
+                    // Time the call
+                    var watcher = Stopwatch.StartNew();
+                    var httpResponse = await _httpClient.GetAsync($"{camera.Ip}/api/data/live?format=json",
+                      HttpCompletionOption.ResponseContentRead);
+                    watcher.Stop();
+                    httpResponse.EnsureSuccessStatusCode();
+
+                    using (var contentStream = await httpResponse.Content.ReadAsStreamAsync())
+                    using (var streamReader = new StreamReader(contentStream))
+                    using (var jsonReader = new JsonTextReader(streamReader))
+                    {
+                        var serializer = new JsonSerializer();
+                        var res = serializer.Deserialize<Root>(jsonReader);
+
+                        if ((res?.status.code == "OK") && (res.content.element.Count > 0))
+                        {
+                            var calculatedTimestamp = DateTime.Now.AddMilliseconds(-(watcher.ElapsedMilliseconds / 2));
+                            personCountDTO.CalculatedTimeStamp = calculatedTimestamp;
+
+                            var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
+
+                            // For each of the zones present on the camera
+                            foreach (var zone in cameraZones)
+                            {
+                                var zoneName = zone.elementname;
+                                var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
+                                listOfPersonCounts.Add(new ZonePersonCountDTO()
+                                {
+                                    CalculatedTimeStamp = calculatedTimestamp,
+                                    ZoneReference = new Zone(camera.Ip, zoneName, zonePersonCount!.value),
+                                    XovisTimeStamp = zone.livedata.time
+                                });
+                            }
+                        }
+                    }
                 }
-              }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    await _logger.WriteErrorLog($"{camera.Ip}" + ex.Message, $"{camera.Zones![0].zone_name[..7]}", "personCountErrorLog", DateTime.Now);
+                }
+
+                return listOfPersonCounts;
             }
-          }
-          catch (Exception ex)
-          {
-            System.Console.WriteLine(ex.Message);
-            await _logger.WriteErrorLog($"{camera.Ip}" + ex.Message, $"{camera.Zones![0].zone_name[..7]}", "personCountErrorLog", DateTime.Now);
-          }
 
-          return listOfPersonCounts;
+            tasks.Add(Func());
         }
-
-        tasks.Add(Func());
-      }
-      try
-      {
-        var results = await Task.WhenAll(tasks);
-        foreach (var result in results)
+        try
         {
-          response.Data.AddRange(result);
+            var results = await Task.WhenAll(tasks);
+            foreach (var result in results)
+            {
+                response.Data.AddRange(result);
+            }
         }
-      }
-      catch (Exception ex)
-      {
-        response.Success = false;
-        response.Message = $"An unexpected error occurred: {ex.Message}";
-        await _logger.WriteErrorLog(ex.Message, "", "unexpectedErrorLog", DateTime.Now);
-      }
+        catch (Exception ex)
+        {
+            response.Success = false;
+            response.Message = $"An unexpected error occurred: {ex.Message}";
+            await _logger.WriteErrorLog(ex.Message, "", "unexpectedErrorLog", DateTime.Now);
+        }
     }
     return response;
-  }
+}
+
+
 
 }
