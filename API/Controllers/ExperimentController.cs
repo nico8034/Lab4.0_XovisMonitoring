@@ -19,10 +19,11 @@ using Microsoft.AspNetCore.Mvc;
   {
    
     public ExperimentController(ISender sender) : base(sender) {}
-    
+
     /// <summary>
     /// Start an experiment that logs and captures Stereo and Validation images
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <param name="interval">Interval is in MS and must be >= 100</param>
     /// <returns></returns>
     [HttpPost("Start/WithImages/{interval:int}")]

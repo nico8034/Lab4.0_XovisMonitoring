@@ -139,7 +139,7 @@ public class XovisCameraService : ICameraService
           if (responseBody == null) throw new EmptyResponseBodyException();
 
           var res = JsonConvert.DeserializeObject<Root>(responseBody);
-          if ((res.status.code == "OK") && (res.content.element.Count > 0))
+          if ((res!.status.code == "OK") && (res.content.element.Count > 0))
           {
             var cameraZones = res.content.element.FindAll(e => e.datatype == "ZONE");
 
@@ -148,7 +148,7 @@ public class XovisCameraService : ICameraService
             {
               var zoneName = zone.elementname;
               var zonePersonCount = zone.livedata.value.Find(e => e.label == "count");
-              zones.Add(new Zone(cameraIp, zoneName, zonePersonCount.value));
+              zones.Add(new Zone(cameraIp, zoneName, zonePersonCount!.value));
             }
 
           }
@@ -176,7 +176,7 @@ public class XovisCameraService : ICameraService
     }
     catch (HttpRequestException e)
     {
-      Console.WriteLine("Unable to connect to Xovis Cameras");
+      Console.WriteLine($"Unable to connect to Xovis Cameras {e.Message}");
     }
     catch (Exception ex)
     {

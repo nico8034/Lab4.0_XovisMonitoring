@@ -39,7 +39,6 @@
             Reload available cameras from list
             </summary>
             <param name="cancellationToken"></param>
-            <param name="cameraIp"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -69,6 +68,7 @@
             <summary>
             Start an experiment that logs and captures Stereo and Validation images
             </summary>
+            <param name="cancellationToken"></param>
             <param name="interval">Interval is in MS and must be >= 100</param>
             <returns></returns>
         </member>
@@ -134,6 +134,7 @@
             Get data from specific zone by name
             </summary>
             <param name="name">The name of the specific zone, use Zones endpoint to get full list of zones</param>
+            <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.MonitoringController.PersonCount(System.Threading.CancellationToken)">

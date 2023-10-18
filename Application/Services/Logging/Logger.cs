@@ -8,8 +8,8 @@ namespace Application.Services.Logging
     public class Logger : ILogger
     {
         private string experimentName = string.Empty;
-        private StreamWriter successWriter = null;
-        private StreamWriter errorWriter = null;
+        private StreamWriter? successWriter = null;
+        private StreamWriter? errorWriter = null;
         private const int MAX_ENTRIES_BEFORE_FLUSH = 1000;
         private int successEntryCount = 0;
         private int errorEntryCount = 0;
@@ -28,7 +28,7 @@ namespace Application.Services.Logging
 
         private async Task EnsureFileIsOpenForWriting(string ExperimentName, string FileName, string header, bool isSuccessLog)
         {
-            StreamWriter targetWriter = isSuccessLog ? successWriter : errorWriter;
+            StreamWriter? targetWriter = isSuccessLog ? successWriter : errorWriter;
             if (targetWriter == null || !experimentName.Equals(ExperimentName, StringComparison.OrdinalIgnoreCase))
             {
                 // Close and flush the previous writer if it was open.
@@ -68,7 +68,7 @@ namespace Application.Services.Logging
 
         private async Task WriteLogLine(string line, bool isSuccessLog)
         {
-            StreamWriter targetWriter = isSuccessLog ? successWriter : errorWriter;
+            StreamWriter? targetWriter = isSuccessLog ? successWriter : errorWriter;
             int currentCount = isSuccessLog ? successEntryCount : errorEntryCount;
 
             await targetWriter.WriteLineAsync(line);

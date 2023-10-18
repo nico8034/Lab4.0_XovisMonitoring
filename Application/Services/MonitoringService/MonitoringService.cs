@@ -8,7 +8,7 @@ namespace Application.Services.MonitoringService;
 public class MonitoringService : IMonitoringService
 {
   public bool isActive { get; set; } = false;
-  public Room room { get; set; }
+  public Room room { get; set; } = null!;
   public int pullInterval { get; set; } = 100;
   public bool shouldLog { get; set; } = false;
   public string ExperimentName { get; set; } = string.Empty;
@@ -32,7 +32,7 @@ public class MonitoringService : IMonitoringService
   {
     foreach (var camera in cameras)
     {
-      if (camera.Zones.Count == 0) continue;
+      if (camera.Zones!.Count == 0) continue;
       {
         room.AddZone(camera.Zones);
       }
@@ -64,10 +64,10 @@ public class MonitoringService : IMonitoringService
     return isActive;
   }
 
-  public void StopMonitoringRoom()
+  public async Task StopMonitoringRoom()
   {
     isActive = false;
-    _logger.DisposeAsync();
+    await _logger.DisposeAsync();
   }
 
   public void SetExperimentName(string experimentName)

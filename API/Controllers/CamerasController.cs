@@ -124,7 +124,6 @@ public class CamerasController : ApiController
     /// Reload available cameras from list
     /// </summary>
     /// <param name="cancellationToken"></param>
-    /// <param name="cameraIp"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     [HttpPost("Reload")]

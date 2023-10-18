@@ -8,7 +8,7 @@ public class ImageProcessingService : IImageProcessingService
   {
     public List<ExperimentData> dataToBeProcessed { get; set; } = new();
     public string CurrentExperimentName { get; set; } = string.Empty;
-    public List<string> logFileData { get; set; }
+    public List<string>? logFileData { get; set; }
     public bool isRunnung { get; set; } = false;
 
     public void StartProcessing()
@@ -68,7 +68,7 @@ public class ImageProcessingService : IImageProcessingService
         try
         {
           // SaveImageFromExperimentData(experimentDataLocatiton, experimentData.StereoImages, experimentData);
-          SaveImageFromExperimentData(experimentDataLocatiton, experimentData.ValidationImages, experimentData);
+          SaveImageFromExperimentData(experimentDataLocatiton, experimentData.ValidationImages!, experimentData);
 
           foreach (var line in logFileData)
           {

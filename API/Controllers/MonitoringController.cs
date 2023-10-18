@@ -58,11 +58,12 @@ public class MonitoringController : ApiController
             return StatusCode(500, e.Message);
         }
     }
-    
+
     /// <summary>
     /// Get data from specific zone by name
     /// </summary>
     /// <param name="name">The name of the specific zone, use Zones endpoint to get full list of zones</param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("Zone/{name}")]
     public async Task<ActionResult<ServiceResponse<Zone>>> Zone(string name, CancellationToken cancellationToken)

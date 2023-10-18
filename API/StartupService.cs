@@ -28,7 +28,7 @@ public class StartupService : IHostedService
     try
     {
       var result = await _xovisCameraService.RegisterCameras();
-      _cameraInfoProvider.Cameras = result.Data;
+      _cameraInfoProvider.Cameras = result.Data!;
       _monitoringService.SetupRoom();
 
     }
@@ -41,10 +41,10 @@ public class StartupService : IHostedService
     //Setup / Start the room service
 
     Console.WriteLine("Camera Zones:");
-    foreach (var camera in _cameraInfoProvider.Cameras)
+    foreach (var camera in _cameraInfoProvider.Cameras!)
     {
       Console.WriteLine($@"camera Ip: {camera.Ip}");
-      foreach (var zone in camera.Zones)
+      foreach (var zone in camera.Zones!)
       {
         Console.WriteLine($@"camera zone: {zone.zone_name}");
         // cameraZones.Add(new Zone(camera.Ip,zone.ZoneName));
@@ -75,13 +75,13 @@ public class StartupService : IHostedService
     _monitoringService.GetRoom().AddZone(predefinedZones);
 
     Console.WriteLine($"Camera count: {_cameraInfoProvider.Cameras.Count}");
-    Console.WriteLine($"Camera Zone count: {_cameraInfoProvider.Cameras.Sum(o => o.Zones.Count)}");
+    Console.WriteLine($"Camera Zone count: {_cameraInfoProvider.Cameras.Sum(o => o.Zones!.Count)}");
     Console.WriteLine($"Model Zone count: {_monitoringService.GetRoom().GetZones().Count}");
   }
 
   public async Task StopAsync(CancellationToken cancellationToken)
   {
-    _monitoringService.StopMonitoringRoom();
+    await _monitoringService.StopMonitoringRoom();
     _imageProcessingService.StopProcessing();
   }
 }
