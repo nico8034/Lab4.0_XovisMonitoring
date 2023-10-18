@@ -153,7 +153,7 @@ public class MqttBackgroundService : IMqttService
           var newObj = new Dictionary<string, object>
             {
                 {"@type", "XovisData"},
-                {"timeStamp", $"{zone.Value.timeStamp:yyyy:MM:dd} {zone.Value.timeStamp:HH:mm:ss.fff}"},
+                {"timeStamp", $"{zone.Value.timeStamp:yyyy-MM-dd} {zone.Value.timeStamp:HH:mm:ss.fff}"},
                 {"zone_index", zone.Value.zone_index},
                 {"zone_name", $"{zone.Value.zone_name}"},
                 {"personCount", zone.Value.personCount}
