@@ -1,0 +1,2 @@
+Largest timegap across all zones: 6.263 seconds
+Average timegap across all zones: 0.19725550660792995 seconds

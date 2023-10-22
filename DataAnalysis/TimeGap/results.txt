@@ -1,0 +1,244 @@
+Zone: Zone_01-02
+  Longest timegap: 0.439 seconds
+  Average timegap: 0.23020000000000002 seconds
+
+Zone: Zone_01-06
+  Longest timegap: 4.594 seconds
+  Average timegap: 0.4133684210526316 seconds
+
+Zone: Zone_01-07
+  Longest timegap: 1.165 seconds
+  Average timegap: 0.2498235294117647 seconds
+
+Zone: Zone_01-08
+  Longest timegap: 0.186 seconds
+  Average timegap: 0.17875000000000002 seconds
+
+Zone: Zone_02-03
+  Longest timegap: 5.507 seconds
+  Average timegap: 0.3914399999999999 seconds
+
+Zone: Zone_02-02
+  Longest timegap: 4.046 seconds
+  Average timegap: 0.7322857142857143 seconds
+
+Zone: Zone_02-04
+  Longest timegap: 7.19 seconds
+  Average timegap: 0.5631052631578947 seconds
+
+Zone: Zone_02-05
+  Longest timegap: 4.81 seconds
+  Average timegap: 0.5705833333333333 seconds
+
+Zone: Zone_04-01
+  Longest timegap: 0.438 seconds
+  Average timegap: 0.22679999999999997 seconds
+
+Zone: Zone_04-02
+  Longest timegap: 0.187 seconds
+  Average timegap: 0.1778 seconds
+
+Zone: Zone_04-03
+  Longest timegap: 0.201 seconds
+  Average timegap: 0.17675 seconds
+
+Zone: Zone_04-06
+  Longest timegap: 15.127 seconds
+  Average timegap: 1.8331111111111111 seconds
+
+Zone: Zone_04-05
+  Longest timegap: 2.97 seconds
+  Average timegap: 0.52075 seconds
+
+Zone: Zone_04-04
+  Longest timegap: 0.343 seconds
+  Average timegap: 0.18331578947368418 seconds
+
+Zone: Zone_06-01
+  Longest timegap: 0.436 seconds
+  Average timegap: 0.208 seconds
+
+Zone: Zone_06-04
+  Longest timegap: 0.279 seconds
+  Average timegap: 0.17733333333333332 seconds
+
+Zone: Zone_06-05
+  Longest timegap: 30.952 seconds
+  Average timegap: 1.884 seconds
+
+Zone: Zone_06-02
+  Longest timegap: 27.12 seconds
+  Average timegap: 1.4576190476190478 seconds
+
+Zone: Zone_05-01
+  Longest timegap: 10.435 seconds
+  Average timegap: 1.1081818181818184 seconds
+
+Zone: Zone_05-02
+  Longest timegap: 7.499 seconds
+  Average timegap: 0.6308125 seconds
+
+Zone: Zone_05-03
+  Longest timegap: 4.818 seconds
+  Average timegap: 0.511142857142857 seconds
+
+Zone: Zone_03-03
+  Longest timegap: 1.725 seconds
+  Average timegap: 0.33409999999999995 seconds
+
+Zone: Zone_03-02
+  Longest timegap: 0.184 seconds
+  Average timegap: 0.173 seconds
+
+Zone: Zone_05-04
+  Longest timegap: 0.185 seconds
+  Average timegap: 0.185 seconds
+
+Zone: Zone_05-05
+  Longest timegap: 0.204 seconds
+  Average timegap: 0.17355555555555557 seconds
+
+Zone: Zone_05-06
+  Longest timegap: 0.201 seconds
+  Average timegap: 0.1865 seconds
+
+Zone: Zone_07-02
+  Longest timegap: 0.175 seconds
+  Average timegap: 0.17075 seconds
+
+Zone: Zone_07-04
+  Longest timegap: 0.186 seconds
+  Average timegap: 0.18066666666666667 seconds
+
+Zone: Zone_09-02
+  Longest timegap: 0.174 seconds
+  Average timegap: 0.172 seconds
+
+Zone: Zone_09-04
+  Longest timegap: 0.183 seconds
+  Average timegap: 0.1742 seconds
+
+Zone: Zone_09-03
+  Longest timegap: 10.225 seconds
+  Average timegap: 0.8488666666666667 seconds
+
+Zone: Zone_09-01
+  Longest timegap: 6.965 seconds
+  Average timegap: 0.61775 seconds
+
+Zone: Zone_07-03
+  Longest timegap: 0.19 seconds
+  Average timegap: 0.17974999999999997 seconds
+
+Zone: Zone_07-01
+  Longest timegap: 0.185 seconds
+  Average timegap: 0.17522222222222225 seconds
+
+Zone: Zone_08-02
+  Longest timegap: 0.173 seconds
+  Average timegap: 0.17055555555555554 seconds
+
+Zone: Zone_10-04
+  Longest timegap: 0.186 seconds
+  Average timegap: 0.17314285714285713 seconds
+
+Zone: Zone_10-03
+  Longest timegap: 0.173 seconds
+  Average timegap: 0.17049999999999998 seconds
+
+Zone: Zone_10-02
+  Longest timegap: 0.181 seconds
+  Average timegap: 0.1732 seconds
+
+Zone: Zone_08-01
+  Longest timegap: 1.041 seconds
+  Average timegap: 0.23542857142857146 seconds
+
+Zone: Zone_06-03
+  Longest timegap: 0.184 seconds
+  Average timegap: 0.17533333333333334 seconds
+
+Zone: Zone_10-01
+  Longest timegap: 0.173 seconds
+  Average timegap: 0.1725 seconds
+
+Zone: Zone_10-05
+  Longest timegap: 41.524 seconds
+  Average timegap: 4.3122 seconds
+
+Zone: Zone_12-01
+  Longest timegap: 38.908 seconds
+  Average timegap: 2.145449999999999 seconds
+
+Zone: Zone_12-02
+  Longest timegap: 40.641 seconds
+  Average timegap: 3.0609999999999995 seconds
+
+Zone: Zone_12-03
+  Longest timegap: 34.093 seconds
+  Average timegap: 1.7803333333333333 seconds
+
+Zone: Zone_10-06
+  Longest timegap: 0.218 seconds
+  Average timegap: 0.1885 seconds
+
+Zone: Zone_10-07
+  Longest timegap: 0.186 seconds
+  Average timegap: 0.1720714285714286 seconds
+
+Zone: Zone_14-01
+  Longest timegap: 0.171 seconds
+  Average timegap: 0.1705 seconds
+
+Zone: Zone_14-02
+  Longest timegap: 17.986 seconds
+  Average timegap: 1.3240769230769232 seconds
+
+Zone: Zone_13-05
+  Longest timegap: 31.446 seconds
+  Average timegap: 3.651000000000001 seconds
+
+Zone: Zone_13-01
+  Longest timegap: 0.173 seconds
+  Average timegap: 0.17125 seconds
+
+Zone: Zone_13-02
+  Longest timegap: 0.185 seconds
+  Average timegap: 0.1738 seconds
+
+Zone: Zone_13-03
+  Longest timegap: 0.172 seconds
+  Average timegap: 0.172 seconds
+
+Zone: Zone_13-06
+  Longest timegap: 0.187 seconds
+  Average timegap: 0.17825000000000002 seconds
+
+Zone: Zone_14-04
+  Longest timegap: 17.64 seconds
+  Average timegap: 2.715636363636363 seconds
+
+Zone: Zone_14-03
+  Longest timegap: 17.272 seconds
+  Average timegap: 1.7578125 seconds
+
+Zone: Zone_14-05
+  Longest timegap: 1.221 seconds
+  Average timegap: 0.5206666666666667 seconds
+
+Zone: Zone_14-06
+  Longest timegap: 0.174 seconds
+  Average timegap: 0.1710769230769231 seconds
+
+Zone: Zone_14-07
+  Longest timegap: 0.175 seconds
+  Average timegap: 0.17266666666666666 seconds
+
+Zone: Zone_12-05
+  Longest timegap: 0.185 seconds
+  Average timegap: 0.1738 seconds
+
+Zone: Zone_12-04
+  Longest timegap: 0.174 seconds
+  Average timegap: 0.1718 seconds
+
