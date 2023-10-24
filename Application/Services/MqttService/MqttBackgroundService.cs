@@ -47,11 +47,11 @@ public class MqttBackgroundService : IMqttService
 
     return new MqttClientOptionsBuilder()
         .WithClientId("XovisZones")
-        .WithTcpServer("localhost", port: 1883)
+        // .WithTcpServer("localhost", port: 1883)
         // .WithTcpServer("digitechi4.tek.sdu.dk", port: 1883)
-        // .WithTcpServer("10.126.128.90", port: 1883)
+        .WithTcpServer("10.126.128.158", port: 1883)
         .WithCleanSession()
-        // .WithCredentials("semantic","s3mant1c")
+        .WithCredentials("semantic","s3mant1c")
         .Build();
 
     //docker run -it -p 1883:1883 -p 9001:9001 -v C:\Users\nicol\Documents\gitProjects\Lab4.0_XovisMonitoring\mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
