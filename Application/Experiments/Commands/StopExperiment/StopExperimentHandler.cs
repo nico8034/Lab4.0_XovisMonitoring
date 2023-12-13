@@ -2,6 +2,7 @@ using Application.Exceptions;
 using Application.Services.ExperimentService;
 using Application.Services.ImageProcessingService;
 using Application.Services.MonitoringService;
+using Application.Services.MqttService;
 using MediatR;
 
 namespace Application.Experiments.Commands.StopExperiment;
@@ -12,12 +13,14 @@ public class StopExperimentHandler : IRequestHandler<StopExperimentCommand, stri
     private readonly IExperimentService _experimentService;
     private readonly IImageProcessingService _imageProcessingService;
     private readonly IMonitoringService _monitoringService;
+    private readonly IMqttService _mqttService;
 
-    public StopExperimentHandler(IExperimentService experimentService, IImageProcessingService imageProcessingService, IMonitoringService monitoringService)
+    public StopExperimentHandler(IExperimentService experimentService, IImageProcessingService imageProcessingService, IMonitoringService monitoringService, IMqttService mqttService)
     {
         _experimentService = experimentService;
         _imageProcessingService = imageProcessingService;
         _monitoringService = monitoringService;
+        _mqttService = mqttService;
     }
 
     public async Task<string> Handle(StopExperimentCommand request, CancellationToken cancellationToken)
@@ -31,10 +34,11 @@ public class StopExperimentHandler : IRequestHandler<StopExperimentCommand, stri
         
         // Stop experiment
         _experimentService.StopExperiment();
+        await _mqttService.StopPublishing();
         
         // Stop monitoring service
         if (_monitoringService.IsActive())
-            _monitoringService.StopMonitoringRoom();
+            await _monitoringService.StopMonitoringRoom();
 
         // Stop background processing service
         if (_imageProcessingService.IsActive())

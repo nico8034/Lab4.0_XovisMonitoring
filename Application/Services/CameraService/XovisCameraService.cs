@@ -2,6 +2,7 @@ using System.Diagnostics;
 using API.Exceptions;
 using Application.Common;
 using Application.Services.cameraInfo;
+using Application.Services.ExperimentService;
 using Application.Services.Logging;
 using Domain.Entities;
 using Domain.Entities.JSON;
@@ -14,12 +15,14 @@ public class XovisCameraService : ICameraService
   private readonly HttpClient _httpClient;
   private readonly CameraInfoProvider _cameraInfoProvider;
   private readonly ILogger _logger;
+  // private readonly IExperimentService _experimentService;
 
   public XovisCameraService(HttpClient httpClient, CameraInfoProvider cameraInfoProvider, ILogger logger)
   {
     _httpClient = httpClient;
     _cameraInfoProvider = cameraInfoProvider;
     _logger = logger;
+    // _experimentService = experimentService;
   }
 
   private string filePath
@@ -389,7 +392,4 @@ public class XovisCameraService : ICameraService
     }
     return response;
 }
-
-
-
 }

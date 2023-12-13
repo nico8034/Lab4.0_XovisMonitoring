@@ -15,13 +15,11 @@ public class ExperimentService : IExperimentService
     public Experiment? currentExperiment { get; set; } = null;
 
     private readonly ICameraService _xovisService;
-    private readonly IMonitoringService _monitoringService;
     private readonly IImageProcessingService _imageProcessingService;
 
-    public ExperimentService(ICameraService xovisService, IMonitoringService monitoringService, IImageProcessingService imageProcessingService)
+    public ExperimentService(IImageProcessingService imageProcessingService)
     {
-      _xovisService = xovisService;
-      _monitoringService = monitoringService;
+      // _xovisService = xovisService;
       _imageProcessingService = imageProcessingService;
     }
 
@@ -35,7 +33,7 @@ public class ExperimentService : IExperimentService
       // Experiment
       currentExperiment = new Experiment();
       
-      //TODO TESTING
+      //Start service for experiments that require images
       if (withImages)
       {
         // State
@@ -44,7 +42,8 @@ public class ExperimentService : IExperimentService
         // Task
         Task.Run(RunExperiment);
       }
-
+      
+      // Just return experiment id for experiments that dont require images
       return currentExperiment.Id;
     }
 
@@ -109,12 +108,12 @@ public class ExperimentService : IExperimentService
             
           if (imageResponseSuccess)
           {
-            currentExperiment.AddExperimentData(
-              new ExperimentData(
-                validationImage.Data,
-                _monitoringService.GetRoom().GetZonePeopleCount()
-              )
-            );
+            // currentExperiment.AddExperimentData(
+            //   new ExperimentData(
+            //     validationImage.Data,
+            //     _monitoringService.GetRoom().GetZonePeopleCount()
+            //   )
+            // );
 
             stopwatch.Stop();
             Console.WriteLine($"Experiment: data input: {currentExperiment.ExperimentData.Count} - time in ms {stopwatch.ElapsedMilliseconds}");

@@ -40,7 +40,7 @@ public class StartupService : IHostedService
 
     //Setup / Start the room service
 
-    Console.WriteLine("Camera Zones:");
+    Console.WriteLine("Zones from Xovis cameras:");
     foreach (var camera in _cameraInfoProvider.Cameras!)
     {
       Console.WriteLine($@"camera Ip: {camera.Ip}");

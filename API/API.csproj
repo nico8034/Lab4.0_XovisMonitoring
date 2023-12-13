@@ -37,4 +37,8 @@
       <Folder Include="Exceptions" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ReferencePathWithRefAssemblies Update="C:\Users\nicol\.nuget\packages\microsoft.netcore.app.ref\7.0.14\ref\net7.0\System.Security.Cryptography.dll" />
+    </ItemGroup>
+
 </Project>

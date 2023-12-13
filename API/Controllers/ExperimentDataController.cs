@@ -21,11 +21,11 @@ public class ExperimentDataController : ApiController
     }
     
     /// <summary>
-    /// Get a list of saved experiments
+    /// Get a list of saved experiments and their name
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet]
+    [HttpGet("GetList")]
     public async Task<ActionResult<ServiceResponse<List<string>>>> GetExperiments(CancellationToken cancellationToken)
     {
         var query = new GetExperimentsDataQuery();
@@ -46,12 +46,12 @@ public class ExperimentDataController : ApiController
     }
     
     /// <summary>
-    /// Download Zip folder containing specific experiment data. Use /ExperimentData to get names
+    /// Download a zip folder containing data from a specific experiment
     /// </summary>
-    /// <param name="experimentName">Example: "experiment_28-07-2023T13-49-14" </param>
+    /// <param name="experimentName">Name of experiment to download i.e: "experiment_28-07-2023T13-49-14" </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet("Download/{experimentName}")]
+    [HttpGet("Download")]
     public async Task<ActionResult> DownloadExperiment(string experimentName, CancellationToken cancellationToken)
     {
         var query = new DownloadExperimentDataQuery(experimentName);
@@ -68,12 +68,12 @@ public class ExperimentDataController : ApiController
     }
     
     /// <summary>
-    /// 
+    /// Delete a specific experiment
     /// </summary>
-    /// <param name="experimentName">Example: "experiment_28-07-2023T13-49-14" </param>
+    /// <param name="experimentName">Name of experiment to delete: "experiment_28-07-2023T13-49-14" </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpDelete("Delete/{experimentName}")]
+    [HttpDelete("Delete")]
     public async Task<ActionResult<ServiceResponse<string>>> DeleteExperiment(string experimentName, CancellationToken cancellationToken)
     {
         var query = new DeleteExperimentHandlerCommand(experimentName);

@@ -20,49 +20,50 @@ using Microsoft.AspNetCore.Mvc;
    
     public ExperimentController(ISender sender) : base(sender) {}
 
-    /// <summary>
-    /// Start an experiment that logs and captures Stereo and Validation images
-    /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <param name="interval">Interval is in MS and must be >= 100</param>
-    /// <returns></returns>
-    [HttpPost("Start/WithImages/{interval:int}")]
-    public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
-    {
-      var command = new StartExperimentCommand(true, interval);
-      var response = new ServiceResponse<ExperimentInfoDTO> {};
-
-      try
-      {
-        var result = await Sender.Send(command, cancellationToken);
-        response.Data = result;
-        return Ok(response);
-      }
-      catch (NoCamerasRegisteredException e)
-      {
-        response.Success = false;
-        response.Message = e.Message;
-        return UnprocessableEntity(response);
-      }
-      catch (ExperimentAlreadyActiveException e)
-      {
-        response.Success = false;
-        response.Message = e.Message;
-        return Conflict(response);
-      }
-      catch (Exception e)
-      {
-        response.Success = false;
-        response.Message = e.Message;
-        return StatusCode(500, response);
-      }
-    }
+    // /// <summary>
+    // /// Start an experiment that logs and captures Stereo and Validation images
+    // /// </summary>
+    // /// <param name="cancellationToken"></param>
+    // /// <param name="interval">Interval is in MS and must be >= 100</param>
+    // /// <returns></returns>
+    // [HttpPost("Start/WithImages/{interval:int}")]
+    // public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartExperimentWithImages(CancellationToken cancellationToken, int interval)
+    // {
+    //   var command = new StartExperimentCommand(true, interval);
+    //   var response = new ServiceResponse<ExperimentInfoDTO> {};
+    //
+    //   try
+    //   {
+    //     var result = await Sender.Send(command, cancellationToken);
+    //     response.Data = result;
+    //     return Ok(response);
+    //   }
+    //   catch (NoCamerasRegisteredException e)
+    //   {
+    //     response.Success = false;
+    //     response.Message = e.Message;
+    //     return UnprocessableEntity(response);
+    //   }
+    //   catch (ExperimentAlreadyActiveException e)
+    //   {
+    //     response.Success = false;
+    //     response.Message = e.Message;
+    //     return Conflict(response);
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     response.Success = false;
+    //     response.Message = e.Message;
+    //     return StatusCode(500, response);
+    //   }
+    // }
   
     /// <summary>
     /// Start an experiment that only captures logs
     /// </summary>
     /// <returns></returns>
-    [HttpPost("Start/NoImages")]
+    /// Without Images
+    [HttpPost("Start")]
     public async Task<ActionResult<ServiceResponse<ExperimentInfoDTO>>> StartWithoutImages(CancellationToken cancellationToken)
     {
       
@@ -126,7 +127,7 @@ using Microsoft.AspNetCore.Mvc;
     }
     
     /// <summary>
-    /// Get information about the current experiment
+    /// Check if an experiment is already active
     /// </summary>
     /// <returns></returns>
     [HttpGet("Current")]
