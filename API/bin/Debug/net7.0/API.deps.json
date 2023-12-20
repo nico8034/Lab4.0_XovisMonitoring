@@ -9,7 +9,6 @@
       "API/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
-          "Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.0",
           "Microsoft.Extensions.Http": "8.0.0-rc.1.23419.4",
           "Swashbuckle.AspNetCore": "6.4.0"
@@ -689,14 +688,6 @@
         "runtime": {
           "Domain.dll": {}
         }
-      },
-      "Infrastructure/1.0.0": {
-        "dependencies": {
-          "FluentValidation.DependencyInjectionExtensions": "11.6.0"
-        },
-        "runtime": {
-          "Infrastructure.dll": {}
-        }
       }
     }
   },
@@ -1272,11 +1263,6 @@
       "sha512": ""
     },
     "Domain/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

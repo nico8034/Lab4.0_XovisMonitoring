@@ -55,28 +55,28 @@ public class MqttController : ApiController
   //   }
   // }
   //
-  // /// <summary>
-  // /// Stop publishing zones over MQTT
-  // /// </summary>
-  // /// <param name="cancellationToken"></param>
-  // /// <returns></returns>
-  // [HttpPost("Zones/Stop")]
-  // public async Task<ActionResult<ServiceResponse<string>>> StopPublishing(CancellationToken cancellationToken)
-  // {
-  //   var command = new StopPublishZonesCommand();
-  //   var response = new ServiceResponse<string>();
-  //
-  //   try
-  //   {
-  //     var result = await Sender.Send(command, cancellationToken);
-  //     response.Data = result;
-  //     return Ok(response);
-  //   }
-  //   catch (Exception e)
-  //   {
-  //     response.Success = false;
-  //     response.Message = e.Message;
-  //     return BadRequest(response);
-  //   }
-  // }
+  /// <summary>
+  /// Stop publishing zones over MQTT
+  /// </summary>
+  /// <param name="cancellationToken"></param>
+  /// <returns></returns>
+  [HttpPost("Zones/Stop")]
+  public async Task<ActionResult<ServiceResponse<string>>> StopPublishing(CancellationToken cancellationToken)
+  {
+    var command = new StopPublishZonesCommand();
+    var response = new ServiceResponse<string>();
+  
+    try
+    {
+      var result = await Sender.Send(command, cancellationToken);
+      response.Data = result;
+      return Ok(response);
+    }
+    catch (Exception e)
+    {
+      response.Success = false;
+      response.Message = e.Message;
+      return BadRequest(response);
+    }
+  }
 }
